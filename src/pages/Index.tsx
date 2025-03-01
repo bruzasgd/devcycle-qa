@@ -1,4 +1,4 @@
-<lov-code>
+
 import { useEffect } from "react";
 import Header from "../components/Header";
 import ServiceSection from "../components/ServiceSection";
@@ -296,9 +296,9 @@ const Index = () => {
         {/* Code blocks animation */}
         <div className="absolute -bottom-6 -left-6">
           <div className="flex flex-col items-start space-y-1 text-[8px] font-mono bg-gray-50 p-1 rounded shadow-sm rotate-6 w-14">
-            <div className="text-blue-500">function() {'{'}</div>
+            <div className="text-blue-500">function() {"{"}</div>
             <div className="pl-1 text-green-600">return x;</div>
-            <div className="text-blue-500">{'}'}</div>
+            <div className="text-blue-500">{"}"}</div>
           </div>
         </div>
         
@@ -471,4 +471,102 @@ const Index = () => {
                 </a>
                 <a 
                   href="#contact" 
-                  className="px-8 py-3 rounded-full bg-white border border-gray-200 text-
+                  className="px-8 py-3 rounded-full bg-white border border-gray-200 text-primary shadow-sm hover:shadow-md transition-all hover:scale-105"
+                >
+                  Contact Us
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          {/* Animated arrows indicator */}
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <div className="flex flex-col items-center">
+              <div className="animate-bounce-sequential">
+                <svg width="20" height="10" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L10 9L19 1" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <div className="animate-bounce-sequential" style={{ animationDelay: "0.2s" }}>
+                <svg width="20" height="10" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L10 9L19 1" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Services Section */}
+        <section id="services" className="py-10 sm:py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+            <div className="chip inline-block mb-4 reveal">Services</div>
+            <h2 className="text-3xl sm:text-4xl font-medium mb-6 reveal">
+              Comprehensive QA Solutions
+            </h2>
+            <p className="text-foreground/70 max-w-3xl mx-auto reveal">
+              We offer a full spectrum of testing and quality assurance services to ensure your software delivers exceptional experiences.
+            </p>
+          </div>
+          
+          <ServiceSection
+            id="manual-testing"
+            title="Manual Testing: The Foundation of QA"
+            description="Manual testing is the backbone of software quality, ensuring precise human validation of functionality. However, it's time-consuming and prone to human error. We help you establish reliable manual testing processes while identifying opportunities for automation."
+            label="Manual Testing"
+            animationElement={<ManualTestingAnimation />}
+          />
+          
+          <ServiceSection
+            id="automated-testing"
+            title="Automated UI & E2E Testing: Speed & Precision"
+            description="Boost efficiency with automated UI and end-to-end testing, reducing repetitive tasks while enhancing coverage and reliability. Our automation frameworks enable faster releases while maintaining exceptional quality standards."
+            label="Automated Testing"
+            isReversed={true}
+            animationElement={<AutomatedUITestingAnimation />}
+          />
+          
+          <ServiceSection
+            id="backend-testing"
+            title="Backend, Performance & Load Testing"
+            description="Ensure your system is robust under any load. We test APIs, databases, and system performance under stress conditions to identify bottlenecks and optimize performance before they impact your users."
+            label="Performance Testing"
+            animationElement={<BackendTestingAnimation />}
+          />
+          
+          <ServiceSection
+            id="cicd-integration"
+            title="CI/CD Integration – Seamless Deployment"
+            description="Integrate QA seamlessly into your development pipeline with Azure, GitHub, and Jenkins. Our CI/CD integration ensures quality gates at every stage, catching issues before they reach production."
+            label="CI/CD Integration"
+            isReversed={true}
+            animationElement={<CICDAnimation />}
+          />
+          
+          <ServiceSection
+            id="best-practices"
+            title="Best QA Practices: Agile DOR & DOD"
+            description="We establish clear Definition of Ready (DOR) & Definition of Done (DOD), aligning QA with Agile workflows for optimal efficiency. Our quality-first approach ensures requirements clarity and comprehensive test coverage."
+            label="Best Practices"
+            animationElement={<BestPracticesAnimation />}
+          />
+          
+          <ServiceSection
+            id="test-management"
+            title="Test Management: Control Your Testing Process"
+            description="End-to-end test management solutions, from organizing test cases to tracking execution across manual and automated suites. We help you optimize test coverage, visualize quality metrics, and make data-driven decisions."
+            label="Test Management"
+            isReversed={true}
+            animationElement={<TestManagementAnimation />}
+          />
+        </section>
+       
+        <Contact />
+      </main>
+      
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+};
+
+export default Index;

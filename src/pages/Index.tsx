@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import Header from "../components/Header";
 import ServiceSection from "../components/ServiceSection";
@@ -208,9 +209,9 @@ const Index = () => {
         {/* Code blocks animation */}
         <div className="absolute -bottom-6 -left-6">
           <div className="flex flex-col items-start space-y-1 text-[8px] font-mono bg-gray-50 p-1 rounded shadow-sm rotate-6 w-14">
-            <div className="text-blue-500">function() {</div>
+            <div className="text-blue-500">function() {'{'}</div>
             <div className="pl-1 text-green-600">return x;</div>
-            <div className="text-blue-500">}</div>
+            <div className="text-blue-500">{'}'}</div>
           </div>
         </div>
         

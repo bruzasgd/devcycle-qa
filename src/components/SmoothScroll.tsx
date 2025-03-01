@@ -20,17 +20,20 @@ const SmoothScroll = () => {
       });
     });
 
-    // Intersection Observer for reveal animations
+    // Enhanced Intersection Observer for reveal animations with staggered timing
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.1
+      threshold: 0.15
     };
 
     const handleIntersect = (entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+          // Add a small delay based on the element's position to create a cascade effect
+          setTimeout(() => {
+            entry.target.classList.add('revealed');
+          }, index * 100); // Staggered delay
           observer.unobserve(entry.target);
         }
       });
@@ -38,12 +41,33 @@ const SmoothScroll = () => {
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
 
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    // Select all elements with reveal classes
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    
+    // Sort elements by their vertical position to create a natural flow
+    const sortedElements = Array.from(revealElements).sort((a, b) => {
+      return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+    });
+    
+    sortedElements.forEach(el => {
       observer.observe(el);
     });
 
+    // Parallax scroll effect for background elements
+    const handleParallax = () => {
+      const scrollY = window.scrollY;
+      
+      document.querySelectorAll('.parallax').forEach(element => {
+        const speed = element.getAttribute('data-speed') || 0.2;
+        element.style.transform = `translateY(${scrollY * speed}px)`;
+      });
+    };
+    
+    window.addEventListener('scroll', handleParallax);
+
     return () => {
       observer.disconnect();
+      window.removeEventListener('scroll', handleParallax);
     };
   }, []);
 

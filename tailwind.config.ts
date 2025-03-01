@@ -113,6 +113,71 @@ export default {
 				'rotate': {
 					'0%': { transform: 'rotate(0deg)' },
 					'100%': { transform: 'rotate(360deg)' }
+				},
+				// New animation keyframes
+				'bounce-slow': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
+				},
+				'bounce-sequential': {
+					'0%, 50%, 100%': { transform: 'translateY(0)' },
+					'25%': { transform: 'translateY(-4px)' }
+				},
+				'spinner-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'spinner-fast': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'move-right': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(300%)' }
+				},
+				'move-along-path': {
+					'0%': { left: '0%' },
+					'50%': { left: '50%' },
+					'100%': { left: '100%' }
+				},
+				'progress-right': {
+					'0%': { width: '0%' },
+					'100%': { width: '100%' }
+				},
+				'grow-bar': {
+					'0%': { width: '0%' },
+					'100%': { width: '100%' }
+				},
+				'check': {
+					'0%': { transform: 'scale(0.8)' },
+					'50%': { transform: 'scale(1.1)' },
+					'100%': { transform: 'scale(1)' }
+				},
+				'slide-in': {
+					'0%': { transform: 'translateX(-20px)', opacity: '0' },
+					'100%': { transform: 'translateX(0)', opacity: '1' }
+				},
+				'number-change': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.5' }
+				},
+				'counter': {
+					'0%': { opacity: '0.5' },
+					'100%': { opacity: '1' }
+				},
+				'flow': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(-20px)', opacity: '0' }
+				},
+				'fade-in-out': {
+					'0%': { opacity: '0' },
+					'50%': { opacity: '1' },
+					'100%': { opacity: '0' }
+				},
+				'hover': {
+					'0%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-3px)' },
+					'100%': { transform: 'translateY(0)' }
 				}
 			},
 			animation: {
@@ -125,7 +190,23 @@ export default {
 				'pulse-subtle': 'pulse-subtle 3s infinite',
 				'scale': 'scale 0.4s ease-out',
 				'progress': 'progress 1.5s ease-out',
-				'rotate': 'rotate 20s linear infinite'
+				'rotate': 'rotate 20s linear infinite',
+				// New animations
+				'bounce-slow': 'bounce-slow 3s ease-in-out infinite',
+				'bounce-sequential': 'bounce-sequential 2s ease-in-out infinite',
+				'spinner-slow': 'spinner-slow 10s linear infinite',
+				'spinner-fast': 'spinner-fast 3s linear infinite',
+				'move-right': 'move-right 2s linear infinite',
+				'move-along-path': 'move-along-path 3s ease-in-out infinite',
+				'progress-right': 'progress-right 2s ease-out',
+				'grow-bar': 'grow-bar 1s ease-out forwards',
+				'check': 'check 0.5s ease-out',
+				'slide-in': 'slide-in 0.5s ease-out forwards',
+				'number-change': 'number-change 2s infinite',
+				'counter': 'counter 1s ease-out forwards',
+				'flow': 'flow 2s linear infinite',
+				'fade-in-out': 'fade-in-out 3s infinite',
+				'hover': 'hover 2s ease-in-out infinite'
 			}
 		}
 	},

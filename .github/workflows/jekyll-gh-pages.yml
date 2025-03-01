@@ -28,15 +28,17 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci  # Ensures a clean install
 
       - name: Build Vite project
         run: npm run build
 
+      - name: Remove symlinks (if any)
+        run: find dist -type l -delete
+
       - name: Upload artifact
-        uses: actions/upload-artifact@v4  # Updated to v4
+        uses: actions/upload-pages-artifact@v2  # Ensure correct version
         with:
-          name: github-pages
           path: ./dist  # Ensure this matches your Vite output directory
 
   deploy:
@@ -46,12 +48,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          path: ./dist
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

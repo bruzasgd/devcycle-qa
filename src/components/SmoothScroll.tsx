@@ -58,8 +58,11 @@ const SmoothScroll = () => {
       const scrollY = window.scrollY;
       
       document.querySelectorAll('.parallax').forEach(element => {
-        const speed = element.getAttribute('data-speed') || 0.2;
-        element.style.transform = `translateY(${scrollY * speed}px)`;
+        const speed = element.getAttribute('data-speed') || "0.2";
+        // Fix type error by ensuring element is HTMLElement and speed is converted to number
+        if (element instanceof HTMLElement) {
+          element.style.transform = `translateY(${scrollY * parseFloat(speed)}px)`;
+        }
       });
     };
     

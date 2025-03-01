@@ -1,4 +1,4 @@
-
+<lov-code>
 import { useEffect } from "react";
 import Header from "../components/Header";
 import ServiceSection from "../components/ServiceSection";
@@ -6,47 +6,134 @@ import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import SmoothScroll from "../components/SmoothScroll";
-import { CheckCircle, FileCheck, Gauge, Cpu, GitBranch, CheckSquare, LayoutList } from "lucide-react";
+import { CheckCircle, FileCheck, Gauge, Cpu, GitBranch, CheckSquare, LayoutList, CheckIcon, XIcon, Clock } from "lucide-react";
 
 const Index = () => {
   // Enhanced Animation components for each service with better visualizations
   const ManualTestingAnimation = () => (
     <div className="relative w-full h-full flex items-center justify-center">
-      <div className="animate-pulse-subtle absolute w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-dashed border-gray-300"></div>
-      <div className="relative z-10 text-center">
-        <FileCheck size={48} className="mx-auto mb-4 text-gray-400 animate-bounce-slow" />
-        <div className="w-48 h-2 bg-gray-200 rounded-full mb-2"></div>
-        <div className="w-36 h-2 bg-gray-200 rounded-full mb-2"></div>
-        <div className="w-40 h-2 bg-gray-200 rounded-full"></div>
-      </div>
-      
-      <div className="absolute top-0 right-0 w-20 h-20 flex items-center justify-center">
-        <div className="relative w-10 h-10">
-          {/* Animated clock hands */}
-          <div className="absolute w-0.5 h-5 bg-gray-400 left-1/2 top-0 origin-bottom animate-spinner-slow"></div>
-          <div className="absolute w-0.5 h-3 bg-gray-600 left-1/2 top-2 origin-bottom animate-spinner-fast"></div>
-          <div className="absolute w-5 h-5 rounded-full border border-gray-300 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+      {/* Excel-like spreadsheet representation */}
+      <div className="relative z-10 bg-white rounded-md shadow-md w-[280px] overflow-hidden border border-gray-300">
+        {/* Excel header */}
+        <div className="bg-[#1D6F42] h-6 flex items-center px-2">
+          <div className="w-3 h-3 rounded-full bg-red-500 mr-1"></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-500 mr-1"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500 mr-1"></div>
+          <div className="text-white text-xs font-medium ml-2">Manual Test Cases.xlsx</div>
+        </div>
+        
+        {/* Excel toolbar */}
+        <div className="bg-[#F3F2F1] h-5 flex items-center px-2 border-b border-gray-300">
+          <div className="w-3 h-3 bg-gray-400 mr-1"></div>
+          <div className="w-3 h-3 bg-gray-400 mr-1"></div>
+          <div className="w-20 h-3 bg-gray-300"></div>
+        </div>
+        
+        {/* Excel spreadsheet */}
+        <div className="text-[10px]">
+          {/* Column headers */}
+          <div className="flex border-b border-gray-300 bg-gray-100">
+            <div className="w-8 p-1 border-r border-gray-300 font-bold">#</div>
+            <div className="w-32 p-1 border-r border-gray-300 font-bold">Test Case</div>
+            <div className="w-24 p-1 border-r border-gray-300 font-bold">Expected</div>
+            <div className="w-20 p-1 border-r border-gray-300 font-bold">Status</div>
+            <div className="w-16 p-1 font-bold">Time</div>
+          </div>
+          
+          {/* Test rows with varying statuses */}
+          <div className="flex border-b border-gray-300 hover:bg-blue-50">
+            <div className="w-8 p-1 border-r border-gray-300">1</div>
+            <div className="w-32 p-1 border-r border-gray-300">Login Valid</div>
+            <div className="w-24 p-1 border-r border-gray-300">Access granted</div>
+            <div className="w-20 p-1 border-r border-gray-300 text-green-600 font-medium">PASS</div>
+            <div className="w-16 p-1 text-gray-600">5m 12s</div>
+          </div>
+          
+          <div className="flex border-b border-gray-300 hover:bg-blue-50">
+            <div className="w-8 p-1 border-r border-gray-300">2</div>
+            <div className="w-32 p-1 border-r border-gray-300">Login Invalid</div>
+            <div className="w-24 p-1 border-r border-gray-300">Error message</div>
+            <div className="w-20 p-1 border-r border-gray-300 text-red-600 font-medium">FAIL</div>
+            <div className="w-16 p-1 text-gray-600">8m 45s</div>
+          </div>
+          
+          <div className="flex border-b border-gray-300 hover:bg-blue-50">
+            <div className="w-8 p-1 border-r border-gray-300">3</div>
+            <div className="w-32 p-1 border-r border-gray-300">Search Product</div>
+            <div className="w-24 p-1 border-r border-gray-300">Results show</div>
+            <div className="w-20 p-1 border-r border-gray-300 text-green-600 font-medium">PASS</div>
+            <div className="w-16 p-1 text-gray-600">6m 30s</div>
+          </div>
+          
+          <div className="flex border-b border-gray-300 hover:bg-blue-50">
+            <div className="w-8 p-1 border-r border-gray-300">4</div>
+            <div className="w-32 p-1 border-r border-gray-300">Add to Cart</div>
+            <div className="w-24 p-1 border-r border-gray-300">Item added</div>
+            <div className="w-20 p-1 border-r border-gray-300 text-orange-500 font-medium">IN PROGRESS</div>
+            <div className="w-16 p-1 text-gray-600">--:--</div>
+          </div>
+          
+          <div className="flex border-b border-gray-300 hover:bg-blue-50 bg-blue-50">
+            <div className="w-8 p-1 border-r border-gray-300">5</div>
+            <div className="w-32 p-1 border-r border-gray-300">Checkout</div>
+            <div className="w-24 p-1 border-r border-gray-300">Order confirmed</div>
+            <div className="w-20 p-1 border-r border-gray-300 text-gray-500 font-medium">NOT STARTED</div>
+            <div className="w-16 p-1 text-gray-600">--:--</div>
+          </div>
+          
+          <div className="flex border-b border-gray-300 hover:bg-blue-50">
+            <div className="w-8 p-1 border-r border-gray-300">6</div>
+            <div className="w-32 p-1 border-r border-gray-300">Payment Process</div>
+            <div className="w-24 p-1 border-r border-gray-300">Payment success</div>
+            <div className="w-20 p-1 border-r border-gray-300 text-gray-500 font-medium">NOT STARTED</div>
+            <div className="w-16 p-1 text-gray-600">--:--</div>
+          </div>
+        </div>
+        
+        {/* Excel footer */}
+        <div className="bg-[#F3F2F1] h-5 flex items-center justify-between px-2 text-[8px] text-gray-600">
+          <div>6 test cases</div>
+          <div>2 passed • 1 failed • 1 in progress • 2 not started</div>
         </div>
       </div>
       
-      <div className="absolute bottom-4 right-4 flex items-center">
-        <div className="h-3 w-3 bg-red-500 rounded-full mr-2 animate-pulse"></div>
-        <span className="text-xs text-gray-400">Processing...</span>
+      {/* Manual testing elements */}
+      <div className="absolute top-0 left-0 w-10 h-10 -translate-y-1/2 -translate-x-1/2">
+        <div className="relative">
+          <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center border border-amber-300">
+            <Clock size={14} className="text-amber-600" />
+          </div>
+          <div className="absolute -bottom-1 -right-1 rounded-full bg-amber-500 text-white text-[8px] font-bold h-4 w-8 flex items-center justify-center">
+            SLOW
+          </div>
+        </div>
       </div>
       
       {/* Human tester representation */}
-      <div className="absolute bottom-2 left-2">
-        <div className="w-12 h-12 relative">
-          <div className="w-5 h-5 rounded-full bg-gray-600 absolute top-0 left-1/2 transform -translate-x-1/2"></div>
-          <div className="w-0.5 h-4 bg-gray-600 absolute top-5 left-1/2 transform -translate-x-1/2"></div>
-          <div className="w-8 h-0.5 bg-gray-600 absolute top-7 left-1/2 transform -translate-x-1/2"></div>
-          <div className="w-0.5 h-4 bg-gray-600 absolute top-7 left-1/2 transform -translate-x-1/2 rotate-45 origin-top"></div>
-          <div className="w-0.5 h-4 bg-gray-600 absolute top-7 left-1/2 transform -translate-x-1/2 -rotate-45 origin-top"></div>
+      <div className="absolute bottom-2 right-2">
+        <div className="flex items-center space-x-1">
+          <div className="w-12 h-12 relative">
+            <div className="w-5 h-5 rounded-full bg-gray-600 absolute top-0 left-1/2 transform -translate-x-1/2"></div>
+            <div className="w-0.5 h-4 bg-gray-600 absolute top-5 left-1/2 transform -translate-x-1/2"></div>
+            <div className="w-8 h-0.5 bg-gray-600 absolute top-7 left-1/2 transform -translate-x-1/2"></div>
+            <div className="w-0.5 h-4 bg-gray-600 absolute top-7 left-1/2 transform -translate-x-1/2 rotate-45 origin-top"></div>
+            <div className="w-0.5 h-4 bg-gray-600 absolute top-7 left-1/2 transform -translate-x-1/2 -rotate-45 origin-top"></div>
+          </div>
+          <div className="animate-pulse-subtle px-2 py-1 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-[8px]">
+            Manually testing takes time...
+          </div>
         </div>
-        <div className="animate-bounce-slow mt-1">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 9L12 15L18 9" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+        <div className="flex items-center space-x-1 mt-1">
+          <div className="h-1.5 w-1.5 rounded-full bg-red-500"></div>
+          <div className="text-[7px] text-gray-500">Human error prone</div>
+        </div>
+      </div>
+      
+      {/* Progress indicator */}
+      <div className="absolute top-2 right-2 flex flex-col items-end">
+        <div className="text-[8px] text-gray-500 mb-1">Progress (33%)</div>
+        <div className="w-20 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+          <div className="w-1/3 h-full bg-amber-500 rounded-full animate-pulse-subtle"></div>
         </div>
       </div>
     </div>
@@ -384,102 +471,4 @@ const Index = () => {
                 </a>
                 <a 
                   href="#contact" 
-                  className="px-8 py-3 rounded-full bg-white border border-gray-200 text-primary shadow-sm hover:shadow-md transition-all hover:scale-105"
-                >
-                  Contact Us
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          {/* Animated arrows indicator */}
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-            <div className="flex flex-col items-center">
-              <div className="animate-bounce-sequential">
-                <svg width="20" height="10" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L10 9L19 1" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <div className="animate-bounce-sequential" style={{ animationDelay: "0.2s" }}>
-                <svg width="20" height="10" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L10 9L19 1" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        {/* Services Section */}
-        <section id="services" className="py-10 sm:py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-            <div className="chip inline-block mb-4 reveal">Services</div>
-            <h2 className="text-3xl sm:text-4xl font-medium mb-6 reveal">
-              Comprehensive QA Solutions
-            </h2>
-            <p className="text-foreground/70 max-w-3xl mx-auto reveal">
-              We offer a full spectrum of testing and quality assurance services to ensure your software delivers exceptional experiences.
-            </p>
-          </div>
-          
-          <ServiceSection
-            id="manual-testing"
-            title="Manual Testing: The Foundation of QA"
-            description="Manual testing is the backbone of software quality, ensuring precise human validation of functionality. However, it's time-consuming and prone to human error. We help you establish reliable manual testing processes while identifying opportunities for automation."
-            label="Manual Testing"
-            animationElement={<ManualTestingAnimation />}
-          />
-          
-          <ServiceSection
-            id="automated-testing"
-            title="Automated UI & E2E Testing: Speed & Precision"
-            description="Boost efficiency with automated UI and end-to-end testing, reducing repetitive tasks while enhancing coverage and reliability. Our automation frameworks enable faster releases while maintaining exceptional quality standards."
-            label="Automated Testing"
-            isReversed={true}
-            animationElement={<AutomatedUITestingAnimation />}
-          />
-          
-          <ServiceSection
-            id="backend-testing"
-            title="Backend, Performance & Load Testing"
-            description="Ensure your system is robust under any load. We test APIs, databases, and system performance under stress conditions to identify bottlenecks and optimize performance before they impact your users."
-            label="Performance Testing"
-            animationElement={<BackendTestingAnimation />}
-          />
-          
-          <ServiceSection
-            id="cicd-integration"
-            title="CI/CD Integration – Seamless Deployment"
-            description="Integrate QA seamlessly into your development pipeline with Azure, GitHub, and Jenkins. Our CI/CD integration ensures quality gates at every stage, catching issues before they reach production."
-            label="CI/CD Integration"
-            isReversed={true}
-            animationElement={<CICDAnimation />}
-          />
-          
-          <ServiceSection
-            id="best-practices"
-            title="Best QA Practices: Agile DOR & DOD"
-            description="We establish clear Definition of Ready (DOR) & Definition of Done (DOD), aligning QA with Agile workflows for optimal efficiency. Our quality-first approach ensures requirements clarity and comprehensive test coverage."
-            label="Best Practices"
-            animationElement={<BestPracticesAnimation />}
-          />
-          
-          <ServiceSection
-            id="test-management"
-            title="Test Management: Control Your Testing Process"
-            description="End-to-end test management solutions, from organizing test cases to tracking execution across manual and automated suites. We help you optimize test coverage, visualize quality metrics, and make data-driven decisions."
-            label="Test Management"
-            isReversed={true}
-            animationElement={<TestManagementAnimation />}
-          />
-        </section>
-       
-        <Contact />
-      </main>
-      
-      <Footer />
-      <ScrollToTop />
-    </div>
-  );
-};
-
-export default Index;
+                  className="px-8 py-3 rounded-full bg-white border border-gray-200 text-

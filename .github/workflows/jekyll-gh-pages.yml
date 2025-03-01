@@ -28,18 +28,18 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci  # Ensures a clean install
+        run: npm ci  # Clean install for consistency
 
       - name: Build Vite project
         run: npm run build
 
-      - name: Remove symlinks (if any)
-        run: find dist -type l -delete
+      - name: Ensure dist folder exists
+        run: mkdir -p dist  # Prevents errors if dist is missing
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # Ensure correct version
+        uses: actions/upload-pages-artifact@v1  # Correct version
         with:
-          path: ./dist  # Ensure this matches your Vite output directory
+          path: ./dist  # Ensure this is your Vite build output
 
   deploy:
     environment:

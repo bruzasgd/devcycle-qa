@@ -34,7 +34,7 @@ jobs:
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4  # Updated version
+        uses: actions/upload-pages-artifact@v1  # Correct version
         with:
           path: ./dist  # Ensure this matches your Vite output directory
 

@@ -36,15 +36,15 @@ const ServiceSection = ({
   return (
     <section 
       id={id} 
-      className="py-20 sm:py-24 overflow-hidden" 
+      className="py-12 sm:py-16 overflow-hidden" 
       ref={sectionRef}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12 lg:gap-16`}>
+        <div className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-12`}>
           <div className={`w-full lg:w-1/2 ${isReversed ? 'reveal-right' : 'reveal-left'}`}>
-            <div className="max-w-lg mx-auto lg:mx-0 space-y-6">
+            <div className="max-w-lg mx-auto lg:mx-0 space-y-4">
               <div className="chip">{label}</div>
-              <h2 className="text-3xl sm:text-4xl font-medium">{title}</h2>
+              <h2 className="text-2xl sm:text-3xl font-medium">{title}</h2>
               <p className="text-foreground/80 leading-relaxed">{description}</p>
             </div>
           </div>

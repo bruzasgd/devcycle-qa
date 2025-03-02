@@ -1,4 +1,4 @@
-
+<lov-code>
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import ServiceSection from "../components/ServiceSection";
@@ -252,9 +252,9 @@ const Index = () => {
         {/* Code blocks animation */}
         <div className="absolute -bottom-6 -left-6">
           <div className="flex flex-col items-start space-y-1 text-[8px] font-mono bg-gray-50 p-1 rounded shadow-sm rotate-6 w-14">
-            <div className="text-blue-500">function() {'{'}</div>
+            <div className="text-blue-500">function() {"{"}</div>
             <div className="pl-1 text-green-600">return x;</div>
-            <div className="text-blue-500">{'}'}</div>
+            <div className="text-blue-500">{"}"}</div>
           </div>
         </div>
         
@@ -518,48 +518,4 @@ const Index = () => {
           <ServiceSection
             id="service-6"
             title="Best QA Practices: Agile DOR & DOD"
-            description="We establish clear Definition of Ready (DOR) and Definition of Done (DOD) criteria that include quality checkpoints. This ensures that quality is built-in from the start, not tested-in at the end of development."
-            label="Best Practices"
-            isReversed={true}
-            animationElement={<BestPracticesAnimation />}
-            onVisibilityChange={trackServiceVisibility}
-          />
-          
-          <ServiceSection
-            id="service-7"
-            title="Test Management & Automated Reporting"
-            description="Gain comprehensive visibility with our test management solutions. We implement tools that track test coverage, execution status, and defect trends with automated reporting dashboards that provide actionable insights."
-            label="Test Management"
-            animationElement={<TestManagementAnimation />}
-            onVisibilityChange={trackServiceVisibility}
-          />
-        </section>
-        
-        {/* Quality Meter Section */}
-        <section className="py-16 bg-gray-50 dark:bg-gray-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-10 text-center">
-              <div className="chip inline-block mb-4 reveal">Quality Metrics</div>
-              <h2 className="text-3xl sm:text-4xl font-medium mb-4 reveal">
-                Measuring Quality Improvement
-              </h2>
-              <p className="text-foreground/70 max-w-3xl mx-auto reveal">
-                See how implementing our testing services increases software quality across critical metrics.
-              </p>
-            </div>
-            
-            <QualityMeter servicesImplemented={visibleServices} />
-          </div>
-        </section>
-        
-        {/* Contact Form Section */}
-        <Contact />
-      </main>
-      
-      <Footer />
-      <ScrollToTop />
-    </div>
-  );
-};
-
-export default Index;
+            description="We establish clear Definition of Ready (D

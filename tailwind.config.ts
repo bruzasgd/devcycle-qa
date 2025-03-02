@@ -178,6 +178,17 @@ export default {
 					'0%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-3px)' },
 					'100%': { transform: 'translateY(0)' }
+				},
+				// New animations for crash test theme
+				'spin-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'ping': {
+					'75%, 100%': {
+						transform: 'scale(1.5)',
+						opacity: '0'
+					}
 				}
 			},
 			animation: {
@@ -206,7 +217,10 @@ export default {
 				'counter': 'counter 1s ease-out forwards',
 				'flow': 'flow 2s linear infinite',
 				'fade-in-out': 'fade-in-out 3s infinite',
-				'hover': 'hover 2s ease-in-out infinite'
+				'hover': 'hover 2s ease-in-out infinite',
+				// New animations for crash test theme
+				'spin-slow': 'spin-slow 12s linear infinite',
+				'ping': 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite'
 			}
 		}
 	},

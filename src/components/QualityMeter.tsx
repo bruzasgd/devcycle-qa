@@ -41,7 +41,7 @@ const QualityMeter: React.FC<QualityMeterProps> = ({ servicesUsed, totalServices
         <QualityIndicator 
           title="Reliability" 
           percentage={reliabilityScore} 
-          color="purple"
+          color="yellow"
           description="Consistent behavior"
         />
       </div>
@@ -49,7 +49,7 @@ const QualityMeter: React.FC<QualityMeterProps> = ({ servicesUsed, totalServices
       <div className="mt-8 flex flex-col items-center">
         <div className="w-full max-w-md bg-gray-100 h-2 rounded-full overflow-hidden">
           <div 
-            className="h-full bg-primary rounded-full transition-all duration-1000 ease-out"
+            className="h-full bg-yellow-500 rounded-full transition-all duration-1000 ease-out"
             style={{ width: `${percentage}%` }}
           ></div>
         </div>
@@ -64,7 +64,7 @@ const QualityMeter: React.FC<QualityMeterProps> = ({ servicesUsed, totalServices
 interface QualityIndicatorProps {
   title: string;
   percentage: number;
-  color: "blue" | "green" | "purple" | "amber" | "red";
+  color: "blue" | "green" | "yellow" | "amber" | "red";
   description: string;
 }
 
@@ -73,7 +73,7 @@ const QualityIndicator: React.FC<QualityIndicatorProps> = ({ title, percentage, 
     switch (color) {
       case "blue": return "from-blue-200 to-blue-500 text-blue-700";
       case "green": return "from-green-200 to-green-500 text-green-700";
-      case "purple": return "from-purple-200 to-purple-500 text-purple-700";
+      case "yellow": return "from-yellow-200 to-yellow-500 text-yellow-700";
       case "amber": return "from-amber-200 to-amber-500 text-amber-700";
       case "red": return "from-red-200 to-red-500 text-red-700";
       default: return "from-gray-200 to-gray-500 text-gray-700";

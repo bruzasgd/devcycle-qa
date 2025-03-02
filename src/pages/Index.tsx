@@ -139,8 +139,8 @@ const Index = () => {
             <div className="w-0.5 h-4 bg-gray-600 absolute top-7 left-1/2 transform -translate-x-1/2 rotate-45 origin-top"></div>
             <div className="w-0.5 h-4 bg-gray-600 absolute top-7 left-1/2 transform -translate-x-1/2 -rotate-45 origin-top"></div>
           </div>
-          <div className="animate-pulse-subtle px-2 py-1 rounded-lg bg-yellow-50 border border-yellow-200 text-yellow-800 text-[8px]">
-            takes time
+          <div className="animate-pulse-subtle px-7 py-4 rounded-lg bg-yellow-50 border border-yellow-200 text-yellow-800 text-[8px]">
+            ...takes time
           </div>
         </div>
         <div className="flex items-center space-x-1 mt-1">
@@ -258,10 +258,10 @@ const Index = () => {
             <div className="text-blue-500">trigger:
   branches:
     include:
+      - main</div>
+            <div className="text-blue-500">jobs:
    {""}</div>
-            <div className="pl-1 text-green-600">exclude:
-    - feature_branches</div>
-            <div className="text-blue-500">{"}"}</div>
+            {/* <div className="text-blue-500">{"}"}</div> */}
           </div>
         </div>
         
@@ -514,7 +514,7 @@ const Index = () => {
           {/* 4. Backend, Performance & Load Testing */}
           <ServiceSection
             id="service-4"
-            title="Backend, Performance & Load Testing"
+            title="Performance & Load Testing"
             description="Ensure your system is robust under any load. We test APIs, databases, and system performance under stress conditions to identify bottlenecks and optimize performance before they impact your users."
             label="Performance Testing"
             isReversed={true}
@@ -535,7 +535,7 @@ const Index = () => {
           {/* 6. Best QA Practices */}
           <ServiceSection
             id="service-6"
-            title="Best QA Practices: Agile DOR & DOD"
+            title="Best QA Practices"
             description="We establish clear Definition of Ready (DOR) & Definition of Done (DOD), aligning QA with Agile workflows for optimal efficiency. Our quality-first approach ensures requirements clarity and comprehensive test coverage."
             label="Best Practices"
             isReversed={true}

@@ -61,13 +61,13 @@ const E2ETestingAnimation: React.FC = () => {
           
           {/* Tools */}
           <div className="bg-gray-50 border border-gray-200 rounded-md py-1 px-2">
-            <div className="text-[9px] text-gray-500 mb-1">Popular Frameworks</div>
+            <div className="text-[9px] text-gray-500 mb-1">Our Frameworks</div>
             <div className="flex flex-wrap gap-1">
-              <div className="text-[8px] px-1 rounded bg-purple-100 text-purple-800">Cucumber</div>
               <div className="text-[8px] px-1 rounded bg-cyan-100 text-cyan-800">Cypress</div>
               <div className="text-[8px] px-1 rounded bg-amber-100 text-amber-800">Playwright</div>
-              <div className="text-[8px] px-1 rounded bg-green-100 text-green-800">Selenium</div>
-              <div className="text-[8px] px-1 rounded bg-pink-100 text-pink-800">SpecFlow</div>
+              <div className="text-[8px] px-1 rounded bg-green-100 text-green-800">WebDriver.io</div>
+              <div className="text-[8px] px-1 rounded bg-pink-100 text-pink-800">CodeceptJS</div>
+              <div className="text-[8px] px-1 rounded bg-purple-100 text-purple-800">Cucumber</div>
             </div>
           </div>
         </div>

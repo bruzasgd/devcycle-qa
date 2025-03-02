@@ -81,16 +81,16 @@ const ScreenshotTestingAnimation: React.FC = () => {
                 Reject
               </button>
             </div>
-            <div className="text-gray-500 text-[9px]">
+            {/* <div className="text-gray-500 text-[9px]">
               Test: <span className="font-medium">LoginForm.spec</span>
-            </div>
+            </div> */}
           </div>
         </div>
         
         {/* Tools indicating screenshot comparison */}
-        <div className="absolute -top-8 -right-4 text-[8px] bg-gray-50 border border-gray-200 rounded px-1 py-0.5 shadow-sm">
+        {/* <div className="absolute -top-8 -right-4 text-[8px] bg-gray-50 border border-gray-200 rounded px-1 py-0.5 shadow-sm">
           Tools: Percy, Applitools
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -1,14 +1,31 @@
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import ServiceSection from "../components/ServiceSection";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import SmoothScroll from "../components/SmoothScroll";
+import QualityMeter from "../components/QualityMeter";
+import ScreenshotTestingAnimation from "../components/animations/ScreenshotTestingAnimation";
+import E2ETestingAnimation from "../components/animations/E2ETestingAnimation";
 import { CheckCircle, FileCheck, Gauge, Cpu, GitBranch, CheckSquare, LayoutList, CheckIcon, XIcon, Clock } from "lucide-react";
 
 const Index = () => {
+  // State to track which testing services are visible on screen
+  const [visibleServices, setVisibleServices] = useState<number>(0);
+  
+  // Function to track visible services - will be attached to section visibility
+  const trackServiceVisibility = (isVisible: boolean, serviceId: string) => {
+    if (isVisible) {
+      setVisibleServices(prev => {
+        // Extract the service number from the ID (e.g., "service-3" gives us 3)
+        const serviceNumber = parseInt(serviceId.split('-')[1]);
+        // Return the maximum service number seen so far
+        return Math.max(prev, serviceNumber);
+      });
+    }
+  };
+
   // Enhanced Animation components for each service with better visualizations
   const ManualTestingAnimation = () => (
     <div className="relative w-full h-full flex items-center justify-center">
@@ -139,69 +156,8 @@ const Index = () => {
     </div>
   );
 
-  const AutomatedUITestingAnimation = () => (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="relative grid grid-cols-2 gap-4">
-        {/* Browser frames with animated tests */}
-        <div className="absolute -top-8 -left-8 w-16 h-16 rotate-6 border border-gray-200 rounded bg-white shadow-sm overflow-hidden flex flex-col">
-          <div className="h-2 bg-gray-100 flex items-center px-1">
-            <div className="w-1 h-1 rounded-full bg-red-500 mr-0.5"></div>
-            <div className="w-1 h-1 rounded-full bg-yellow-500 mr-0.5"></div>
-            <div className="w-1 h-1 rounded-full bg-green-500"></div>
-          </div>
-          <div className="flex-1 p-1">
-            <div className="w-full h-1 bg-gray-200 mb-1 animate-pulse"></div>
-            <div className="w-full h-1 bg-gray-200 mb-1"></div>
-            <div className="w-3/4 h-1 bg-gray-200"></div>
-          </div>
-        </div>
-        
-        <div className="absolute -top-4 -right-10 w-16 h-16 -rotate-6 border border-gray-200 rounded bg-white shadow-sm overflow-hidden flex flex-col">
-          <div className="h-2 bg-gray-100 flex items-center px-1">
-            <div className="w-1 h-1 rounded-full bg-red-500 mr-0.5"></div>
-            <div className="w-1 h-1 rounded-full bg-yellow-500 mr-0.5"></div>
-            <div className="w-1 h-1 rounded-full bg-green-500"></div>
-          </div>
-          <div className="flex-1 p-1">
-            <div className="w-full h-1 bg-gray-200 mb-1"></div>
-            <div className="w-full h-1 bg-gray-200 mb-1"></div>
-            <div className="w-3/4 h-1 bg-gray-200 animate-pulse"></div>
-          </div>
-        </div>
-        
-        <div className="p-3 rounded-lg bg-green-50 border border-green-200 flex items-center animate-hover">
-          <CheckCircle size={16} className="text-green-500 mr-2" />
-          <span className="text-xs">Login Test</span>
-        </div>
-        <div className="p-3 rounded-lg bg-green-50 border border-green-200 flex items-center animate-hover" style={{ animationDelay: "0.2s" }}>
-          <CheckCircle size={16} className="text-green-500 mr-2" />
-          <span className="text-xs">Signup Test</span>
-        </div>
-        <div className="p-3 rounded-lg bg-green-50 border border-green-200 flex items-center animate-pulse" style={{ animationDelay: "0.4s" }}>
-          <svg className="animate-spin h-4 w-4 text-primary mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <span className="text-xs">Cart Test</span>
-        </div>
-        <div className="p-3 rounded-lg bg-gray-50 border border-gray-200 flex items-center opacity-60" style={{ animationDelay: "0.6s" }}>
-          <div className="h-4 w-4 border-2 border-gray-300 rounded-full mr-2"></div>
-          <span className="text-xs">Checkout Test</span>
-        </div>
-        
-        {/* CPU/processing animation */}
-        <div className="absolute bottom-0 right-0 w-10 h-10">
-          <div className="relative w-full h-full">
-            <div className="w-5 h-5 bg-gray-200 animate-pulse absolute right-0 bottom-0"></div>
-            <div className="w-4 h-1 bg-gray-300 absolute right-5 bottom-1 animate-pulse" style={{ animationDelay: "0.1s" }}></div>
-            <div className="w-4 h-1 bg-gray-300 absolute right-5 bottom-3 animate-pulse" style={{ animationDelay: "0.2s" }}></div>
-            <div className="w-3 h-1 bg-gray-300 absolute right-9 bottom-2 animate-pulse" style={{ animationDelay: "0.3s" }}></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
+  // Now we use separate animations for Screenshot Testing and E2E Testing
+  
   const BackendTestingAnimation = () => (
     <div className="w-full h-full flex items-center justify-center">
       <div className="relative">
@@ -509,64 +465,55 @@ const Index = () => {
           </div>
           
           <ServiceSection
-            id="manual-testing"
+            id="service-1"
             title="Manual Testing: The Foundation of QA"
             description="Manual testing is the backbone of software quality, ensuring precise human validation of functionality. However, it's time-consuming and prone to human error. We help you establish reliable manual testing processes while identifying opportunities for automation."
             label="Manual Testing"
             animationElement={<ManualTestingAnimation />}
+            onVisibilityChange={trackServiceVisibility}
           />
           
           <ServiceSection
-            id="automated-testing"
-            title="Automated UI & E2E Testing: Speed & Precision"
-            description="Boost efficiency with automated UI and end-to-end testing, reducing repetitive tasks while enhancing coverage and reliability. Our automation frameworks enable faster releases while maintaining exceptional quality standards."
-            label="Automated Testing"
+            id="service-2"
+            title="Visual Regression & Screenshot Testing"
+            description="Detect unwanted visual changes automatically. Our screenshot testing captures UI regressions by comparing images pixel-by-pixel, ensuring your users always experience a visually consistent interface across all browsers and devices."
+            label="Screenshot Testing"
             isReversed={true}
-            animationElement={<AutomatedUITestingAnimation />}
+            animationElement={<ScreenshotTestingAnimation />}
+            onVisibilityChange={trackServiceVisibility}
           />
           
           <ServiceSection
-            id="backend-testing"
+            id="service-3"
+            title="BDD & ATDD E2E Testing"
+            description="Bridge the gap between business requirements and technical implementation with Behavior-Driven Development (BDD) and Acceptance Test-Driven Development (ATDD). Our approach uses Given-When-Then scenarios that everyone understands, from developers to stakeholders."
+            label="E2E Testing"
+            animationElement={<E2ETestingAnimation />}
+            onVisibilityChange={trackServiceVisibility}
+          />
+          
+          <ServiceSection
+            id="service-4"
             title="Backend, Performance & Load Testing"
             description="Ensure your system is robust under any load. We test APIs, databases, and system performance under stress conditions to identify bottlenecks and optimize performance before they impact your users."
             label="Performance Testing"
+            isReversed={true}
             animationElement={<BackendTestingAnimation />}
+            onVisibilityChange={trackServiceVisibility}
           />
           
           <ServiceSection
-            id="cicd-integration"
+            id="service-5"
             title="CI/CD Integration – Seamless Deployment"
             description="Integrate QA seamlessly into your development pipeline with Azure, GitHub, and Jenkins. Our CI/CD integration ensures quality gates at every stage, catching issues before they reach production."
             label="CI/CD Integration"
-            isReversed={true}
             animationElement={<CICDAnimation />}
+            onVisibilityChange={trackServiceVisibility}
           />
           
           <ServiceSection
-            id="best-practices"
+            id="service-6"
             title="Best QA Practices: Agile DOR & DOD"
             description="We establish clear Definition of Ready (DOR) & Definition of Done (DOD), aligning QA with Agile workflows for optimal efficiency. Our quality-first approach ensures requirements clarity and comprehensive test coverage."
             label="Best Practices"
-            animationElement={<BestPracticesAnimation />}
-          />
-          
-          <ServiceSection
-            id="test-management"
-            title="Test Management: Control Your Testing Process"
-            description="End-to-end test management solutions, from organizing test cases to tracking execution across manual and automated suites. We help you optimize test coverage, visualize quality metrics, and make data-driven decisions."
-            label="Test Management"
             isReversed={true}
-            animationElement={<TestManagementAnimation />}
-          />
-        </section>
-       
-        <Contact />
-      </main>
-      
-      <Footer />
-      <ScrollToTop />
-    </div>
-  );
-};
-
-export default Index;

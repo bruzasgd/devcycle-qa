@@ -1,5 +1,6 @@
 
-import { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 interface ServiceSectionProps {
   id: string;
@@ -8,6 +9,7 @@ interface ServiceSectionProps {
   label: string;
   isReversed?: boolean;
   animationElement: ReactNode;
+  onVisibilityChange?: (isVisible: boolean, id: string) => void;
 }
 
 const ServiceSection = ({
@@ -17,9 +19,26 @@ const ServiceSection = ({
   label,
   isReversed = false,
   animationElement,
+  onVisibilityChange,
 }: ServiceSectionProps) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  // Use the intersection observer hook to detect when section becomes visible
+  useIntersectionObserver({
+    ref: sectionRef,
+    onIntersect: (isVisible) => {
+      if (onVisibilityChange) {
+        onVisibilityChange(isVisible, id);
+      }
+    }
+  });
+  
   return (
-    <section id={id} className="py-20 sm:py-24 overflow-hidden">
+    <section 
+      id={id} 
+      className="py-20 sm:py-24 overflow-hidden" 
+      ref={sectionRef}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12 lg:gap-16`}>
           <div className={`w-full lg:w-1/2 ${isReversed ? 'reveal-right' : 'reveal-left'}`}>

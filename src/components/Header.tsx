@@ -30,12 +30,6 @@ const Header = () => {
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#services" className="text-sm font-medium text-foreground/80 hover:text-primary">
-            Services
-          </a>
-          <a href="#contact" className="text-sm font-medium text-foreground/80 hover:text-primary">
-            Contact
-          </a>
         </nav>
         
         <a 

@@ -37,7 +37,7 @@ const Footer = () => {
         
         <div className="border-t border-white/10 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/60 text-sm">
-            &copy; {currentYear} DevCycleQA. All rights reserved.
+            &copy; {currentYear} DevCycleQA by MB "Test Automation". All rights reserved.
           </p>
           
           <div className="flex items-center space-x-6">

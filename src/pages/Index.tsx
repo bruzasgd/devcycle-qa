@@ -140,7 +140,7 @@ const Index = () => {
             <div className="w-0.5 h-4 bg-gray-600 absolute top-7 left-1/2 transform -translate-x-1/2 -rotate-45 origin-top"></div>
           </div>
           <div className="animate-pulse-subtle px-2 py-1 rounded-lg bg-yellow-50 border border-yellow-200 text-yellow-800 text-[8px]">
-            Manually testing takes time...
+            takes time
           </div>
         </div>
         <div className="flex items-center space-x-1 mt-1">

@@ -146,7 +146,7 @@ const Contact = () => {
                 </svg>
               </div>
               <h3 className="text-lg font-medium mb-1">Phone</h3>
-              <p className="text-foreground/70 text-sm">+1 (555) 123-4567</p>
+              <p className="text-foreground/70 text-sm">+370 62728 602</p>
             </div>
             
             <div className="reveal flex flex-col items-center text-center p-6 rounded-lg bg-background shadow-sm">

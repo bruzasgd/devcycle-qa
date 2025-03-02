@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import ServiceSection from "../components/ServiceSection";
@@ -517,3 +518,92 @@ const Index = () => {
             description="We establish clear Definition of Ready (DOR) & Definition of Done (DOD), aligning QA with Agile workflows for optimal efficiency. Our quality-first approach ensures requirements clarity and comprehensive test coverage."
             label="Best Practices"
             isReversed={true}
+            animationElement={<BestPracticesAnimation />}
+            onVisibilityChange={trackServiceVisibility}
+          />
+          
+          <ServiceSection
+            id="service-7"
+            title="Test Management & Reporting"
+            description="Gain complete visibility into your QA process with our test management solutions. Track test execution, coverage metrics, and uncover insights to continuously improve your testing strategy."
+            label="Test Management"
+            animationElement={<TestManagementAnimation />}
+            onVisibilityChange={trackServiceVisibility}
+          />
+        </section>
+        
+        {/* Quality Meter Section */}
+        <section className="py-16 bg-muted/30">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-medium mb-4">See the Quality Impact</h2>
+              <p className="text-foreground/70 max-w-2xl mx-auto">
+                Watch how your software quality improves as you implement more testing strategies in your development process.
+              </p>
+            </div>
+            
+            <QualityMeter level={visibleServices} totalLevels={7} />
+            
+            <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white rounded-xl p-6 shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <CheckIcon className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="font-medium">Higher Reliability</h3>
+                </div>
+                <p className="text-sm text-foreground/70">
+                  Reduce bugs and system failures with comprehensive testing strategies.
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-xl p-6 shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <XIcon className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="font-medium">Fewer Regressions</h3>
+                </div>
+                <p className="text-sm text-foreground/70">
+                  Prevent old bugs from reappearing with automated regression testing.
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-xl p-6 shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <FileCheck className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="font-medium">Better UX</h3>
+                </div>
+                <p className="text-sm text-foreground/70">
+                  Deliver smooth, consistent user experiences across all platforms and devices.
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-xl p-6 shadow-sm">
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Clock className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="font-medium">Faster Releases</h3>
+                </div>
+                <p className="text-sm text-foreground/70">
+                  Speed up your release cycles with automated testing and CI/CD integration.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Contact Section */}
+        <Contact />
+      </main>
+      
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+};
+
+export default Index;

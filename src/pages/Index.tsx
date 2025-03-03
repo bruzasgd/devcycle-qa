@@ -37,7 +37,7 @@ const Index = () => {
     }
   };
 
-  // Enhanced Animation components for each service with better visualizations
+  // Keep the animation components
   const ManualTestingAnimation = () => (
     <div className="relative w-full h-full flex items-center justify-center">
       {/* Excel-like spreadsheet representation */}
@@ -63,7 +63,7 @@ const Index = () => {
           <div className="flex border-b border-gray-300 bg-gray-100">
             <div className="w-8 p-1 border-r border-gray-300 font-bold">#</div>
             <div className="w-32 p-1 border-r border-gray-300 font-bold">Test Case</div>
-            <div className="w-24 p-1 border-r border-gray-300 font-bold">Expected</div>
+            <div className="w-24 p-1 border-r border-gray-300">Expected</div>
             <div className="w-20 p-1 border-r border-gray-300 font-bold">Status</div>
             <div className="w-16 p-1 font-bold">Time</div>
           </div>
@@ -167,8 +167,6 @@ const Index = () => {
     </div>
   );
 
-  // Now we use separate animations for Screenshot Testing and E2E Testing
-  
   const BackendTestingAnimation = () => (
     <div className="w-full h-full flex items-center justify-center">
       <div className="relative">
@@ -471,28 +469,26 @@ const Index = () => {
       <TestingPipeline activeStep={visibleServices} totalSteps={7} />
       
       <main>
-        {/* Hero Section with enhanced animations */}
+        {/* Hero Section with subtle animations */}
         <section ref={heroRef} className="relative pt-28 pb-28 overflow-hidden">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_120%,rgba(250,204,21,0.1),rgba(255,255,255,0))]"></div>
           
-          {/* Animated background elements with more movement */}
+          {/* Animated background elements with more subtle movement */}
           <div className="absolute inset-0 -z-5 overflow-hidden">
-            <div className="parallax absolute top-20 left-20 w-64 h-64 rounded-full bg-yellow-400/5 blur-3xl" data-speed="0.05" data-direction="scale"></div>
-            <div className="parallax absolute bottom-10 right-10 w-96 h-96 rounded-full bg-yellow-500/5 blur-3xl" data-speed="-0.08" data-direction="rotate"></div>
-            <div className="parallax absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-black/5 blur-xl" data-speed="0.15" data-direction="horizontal"></div>
+            <div className="parallax absolute top-20 left-20 w-64 h-64 rounded-full bg-yellow-400/5 blur-3xl" data-speed="0.03" data-direction="scale"></div>
+            <div className="parallax absolute bottom-10 right-10 w-96 h-96 rounded-full bg-yellow-500/5 blur-3xl" data-speed="-0.04" data-direction="rotate"></div>
+            <div className="parallax absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-black/5 blur-xl" data-speed="0.07" data-direction="horizontal"></div>
           </div>
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="max-w-4xl mx-auto">
               <div className="flex justify-center mb-4 animate-fade-in relative key-element">
-                <div className="absolute -inset-4 animate-pulse-ring rounded-full opacity-75 bg-yellow-500/30"></div>
-                <CrashTestLogo size={80} className="relative animate-wiggle" />
+                <CrashTestLogo size={80} className="relative" />
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight animate-fade-in relative">
                 <span className="relative inline-block">
-                  Elevating 
-                  <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-yellow-500 animate-ping-slow"></div>
-                </span> Software Quality
+                  Elevating Software Quality
+                </span>
               </h1>
               <p className="mt-6 text-xl text-foreground/70 animate-fade-in" style={{ animationDelay: "0.1s" }}>
                 Empowering businesses with top-tier QA solutions – from manual testing to automation excellence.
@@ -537,10 +533,9 @@ const Index = () => {
         <section id="services" className="py-6 sm:py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
             <div className="inline-flex items-center justify-center mb-4 reveal">
-              <CrashTestLogo size={30} className="mr-2 animate-spin-slow" />
+              <CrashTestLogo size={30} className="mr-2" />
               <div className="chip bg-yellow-100 text-yellow-800 border-yellow-200 relative">
                 <span>Services</span>
-                <span className="absolute -right-1 -top-1 w-2 h-2 rounded-full bg-yellow-400 animate-ping"></span>
               </div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-medium mb-4 reveal">
@@ -630,14 +625,13 @@ const Index = () => {
           />
         </section>
         
-        {/* Quality Meter Section */}
+        {/* Quality Meter Section - more subtle animations */}
         <section className="py-14 bg-yellow-50/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <div className="flex justify-center mb-4">
                 <div className="relative">
-                  <CrashTestLogo size={40} className="animate-spin-slow" />
-                  <div className="absolute inset-0 bg-yellow-400/30 rounded-full animate-pulse-ring"></div>
+                  <CrashTestLogo size={40} />
                 </div>
               </div>
               <h2 className="text-3xl font-medium mb-4 reveal">See the Quality Impact</h2>
@@ -652,7 +646,7 @@ const Index = () => {
               <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 transform transition-all hover:scale-105 hover:shadow-md">
                 <div className="flex items-center mb-4">
                   <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center relative key-element">
-                    <CheckIcon className="h-5 w-5 text-yellow-500 animate-wiggle" />
+                    <CheckIcon className="h-5 w-5 text-yellow-500" />
                   </div>
                   <h3 className="font-medium">Higher Reliability</h3>
                 </div>
@@ -664,7 +658,7 @@ const Index = () => {
               <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 transform transition-all hover:scale-105 hover:shadow-md">
                 <div className="flex items-center mb-4">
                   <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center relative key-element">
-                    <XIcon className="h-5 w-5 text-yellow-500 animate-wiggle" style={{ animationDelay: "0.1s" }} />
+                    <XIcon className="h-5 w-5 text-yellow-500" />
                   </div>
                   <h3 className="font-medium">Fewer Regressions</h3>
                 </div>
@@ -676,7 +670,7 @@ const Index = () => {
               <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 transform transition-all hover:scale-105 hover:shadow-md">
                 <div className="flex items-center mb-4">
                   <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center relative key-element">
-                    <FileCheck className="h-5 w-5 text-yellow-500 animate-wiggle" style={{ animationDelay: "0.2s" }} />
+                    <FileCheck className="h-5 w-5 text-yellow-500" />
                   </div>
                   <h3 className="font-medium">Better UX</h3>
                 </div>
@@ -688,7 +682,7 @@ const Index = () => {
               <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 transform transition-all hover:scale-105 hover:shadow-md">
                 <div className="flex items-center mb-4">
                   <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center relative key-element">
-                    <Clock className="h-5 w-5 text-yellow-500 animate-wiggle" style={{ animationDelay: "0.3s" }} />
+                    <Clock className="h-5 w-5 text-yellow-500" />
                   </div>
                   <h3 className="font-medium">Faster Releases</h3>
                 </div>
@@ -700,7 +694,7 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Contact Section - replaced with Book a Meeting */}
+        {/* Contact Section */}
         <Contact />
       </main>
       

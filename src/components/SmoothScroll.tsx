@@ -12,8 +12,8 @@ const SmoothScroll = () => {
         
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
-          // Add a pulse effect to the target element
-          targetElement.classList.add('pulse-target');
+          // Add a very subtle pulse effect to the target element
+          targetElement.classList.add('gentle-pulse');
           
           // Smooth scroll with enhanced behavior
           window.scrollTo({
@@ -23,7 +23,7 @@ const SmoothScroll = () => {
           
           // Remove pulse effect after animation completes
           setTimeout(() => {
-            targetElement.classList.remove('pulse-target');
+            targetElement.classList.remove('gentle-pulse');
           }, 1500);
         }
       });
@@ -43,9 +43,9 @@ const SmoothScroll = () => {
           setTimeout(() => {
             entry.target.classList.add('revealed');
             
-            // Add dynamic particle effects for key elements
+            // Add subtle effects for key elements - no particles
             if (entry.target.classList.contains('key-element')) {
-              createParticles(entry.target);
+              entry.target.classList.add('subtle-highlight');
             }
             
             // Add floating animation for call-to-action elements
@@ -106,47 +106,7 @@ const SmoothScroll = () => {
       }
     };
     
-    // Create particle effect function
-    const createParticles = (element) => {
-      const numParticles = 12;
-      const colors = ['#EAB308', '#FEF08A', '#FACC15', '#CA8A04'];
-      const particleContainer = document.createElement('div');
-      particleContainer.className = 'absolute inset-0 overflow-hidden pointer-events-none';
-      element.style.position = 'relative';
-      element.appendChild(particleContainer);
-      
-      for (let i = 0; i < numParticles; i++) {
-        const particle = document.createElement('div');
-        const size = Math.random() * 6 + 3;
-        particle.className = 'absolute rounded-full';
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        particle.style.opacity = '0';
-        particle.style.transform = 'scale(0)';
-        
-        const animDuration = 1 + Math.random() * 1.5;
-        particle.style.animation = `particle-animation ${animDuration}s ease-out forwards`;
-        
-        particleContainer.appendChild(particle);
-        
-        // Clean up particles after animation
-        setTimeout(() => {
-          if (particleContainer.contains(particle)) {
-            particleContainer.removeChild(particle);
-          }
-        }, animDuration * 1000);
-      }
-      
-      // Clean up the container after all animations
-      setTimeout(() => {
-        if (element.contains(particleContainer)) {
-          element.removeChild(particleContainer);
-        }
-      }, 3000);
-    };
+    // No longer need createParticles function - removed
     
     // Add scroll progress indicator to the DOM
     const progressIndicator = document.createElement('div');
@@ -160,22 +120,26 @@ const SmoothScroll = () => {
     // Initialize parallax on load
     handleParallax();
     
-    // Add keyframe animation for particles
+    // Add keyframe animations but make pulse more subtle
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes particle-animation {
-        0% { opacity: 0; transform: scale(0) translate(0, 0); }
-        20% { opacity: 1; transform: scale(1) translate(0, 0); }
-        100% { opacity: 0; transform: scale(0.5) translate(calc(100px * (random(2) - 1)), calc(-100px * random(1))); }
+      .gentle-pulse {
+        animation: gentle-highlight 1.5s ease-out;
       }
       
-      .pulse-target {
-        animation: pulse-highlight 1.5s ease-out;
+      @keyframes gentle-highlight {
+        0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.1); }
+        70% { box-shadow: 0 0 0 8px rgba(250, 204, 21, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
       }
       
-      @keyframes pulse-highlight {
-        0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(250, 204, 21, 0); }
+      .subtle-highlight {
+        animation: subtle-glow 2s ease-in-out;
+      }
+      
+      @keyframes subtle-glow {
+        0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.1); }
+        50% { box-shadow: 0 0 0 5px rgba(250, 204, 21, 0.05); }
         100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
       }
       

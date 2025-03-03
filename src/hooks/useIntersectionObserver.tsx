@@ -5,32 +5,49 @@ interface UseIntersectionObserverProps {
   ref: RefObject<HTMLElement>;
   options?: IntersectionObserverInit;
   onIntersect?: (isVisible: boolean) => void;
+  threshold?: number | number[];
+  rootMargin?: string;
+  triggerOnce?: boolean;
 }
 
 /**
- * Hook that observes when an element is visible in the viewport
+ * Enhanced hook that observes when an element is visible in the viewport
+ * with improved options for animations
  */
 const useIntersectionObserver = ({
   ref,
-  options = {
-    threshold: 0.1, // Default to trigger when 10% of the element is visible
-    rootMargin: '0px',
-  },
-  onIntersect
+  options,
+  onIntersect,
+  threshold = 0.1,
+  rootMargin = '0px',
+  triggerOnce = false
 }: UseIntersectionObserverProps): boolean => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
     if (!ref.current) return;
     
+    const observerOptions = options || {
+      threshold,
+      rootMargin,
+    };
+    
     const observer = new IntersectionObserver(([entry]) => {
       const newIsVisible = entry.isIntersecting;
-      setIsVisible(newIsVisible);
+      
+      if (newIsVisible || !triggerOnce) {
+        setIsVisible(newIsVisible);
+      }
       
       if (onIntersect) {
         onIntersect(newIsVisible);
       }
-    }, options);
+      
+      // If element is visible and we only want to trigger once, unobserve
+      if (newIsVisible && triggerOnce && ref.current) {
+        observer.unobserve(ref.current);
+      }
+    }, observerOptions);
     
     observer.observe(ref.current);
     
@@ -39,7 +56,7 @@ const useIntersectionObserver = ({
         observer.unobserve(ref.current);
       }
     };
-  }, [ref, options, onIntersect]);
+  }, [ref, options, onIntersect, threshold, rootMargin, triggerOnce]);
   
   return isVisible;
 };

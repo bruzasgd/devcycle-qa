@@ -1,5 +1,4 @@
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
 import ServiceSection from "../components/ServiceSection";
 import Contact from "../components/Contact";
@@ -12,10 +11,19 @@ import CrashTestLogo from "../components/CrashTestLogo";
 import ScreenshotTestingAnimation from "../components/animations/ScreenshotTestingAnimation";
 import E2ETestingAnimation from "../components/animations/E2ETestingAnimation";
 import { CheckCircle, FileCheck, Gauge, Cpu, GitBranch, CheckSquare, LayoutList, CheckIcon, XIcon, Clock } from "lucide-react";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 const Index = () => {
   // State to track which testing services are visible on screen
   const [visibleServices, setVisibleServices] = useState<number>(0);
+  const heroRef = useRef(null);
+  
+  // Using enhanced intersection observer
+  const heroIsVisible = useIntersectionObserver({
+    ref: heroRef,
+    threshold: 0.3,
+    triggerOnce: true
+  });
   
   // Function to track visible services - will be attached to section visibility
   const trackServiceVisibility = (isVisible: boolean, serviceId: string) => {
@@ -401,6 +409,59 @@ const Index = () => {
     </div>
   );
 
+  useEffect(() => {
+    const addParticles = () => {
+      const container = document.createElement('div');
+      container.className = 'fixed inset-0 pointer-events-none z-10 overflow-hidden';
+      document.body.appendChild(container);
+      
+      // Create floating particles
+      for (let i = 0; i < 12; i++) {
+        const particle = document.createElement('div');
+        const size = Math.random() * 8 + 4;
+        const isYellow = Math.random() > 0.5;
+        
+        particle.className = `absolute rounded-full animate-float-shadow`;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.backgroundColor = isYellow ? '#FACC15' : '#000000';
+        particle.style.opacity = (Math.random() * 0.4 + 0.1).toString();
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.top = `${Math.random() * 100}vh`;
+        particle.style.animationDuration = `${Math.random() * 8 + 10}s`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        
+        container.appendChild(particle);
+      }
+      
+      // Event to update particles on scroll
+      const handleScroll = () => {
+        const scrollY = window.scrollY;
+        const particles = container.children;
+        
+        for (let i = 0; i < particles.length; i++) {
+          const particle = particles[i] as HTMLElement;
+          const speed = (i % 3 + 1) * 0.05;
+          const direction = i % 2 === 0 ? 1 : -1;
+          
+          particle.style.transform = `translateY(${scrollY * speed * direction}px) translateX(${scrollY * speed * -direction}px)`;
+        }
+      };
+      
+      window.addEventListener('scroll', handleScroll);
+      
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        if (document.body.contains(container)) {
+          document.body.removeChild(container);
+        }
+      };
+    };
+    
+    const cleanup = addParticles();
+    return cleanup;
+  }, []);
+
   return (
     <div className="min-h-screen relative antialiased">
       <SmoothScroll />
@@ -411,52 +472,59 @@ const Index = () => {
       
       <main>
         {/* Hero Section with enhanced animations */}
-        <section className="relative pt-32 pb-32 overflow-hidden">
+        <section ref={heroRef} className="relative pt-28 pb-28 overflow-hidden">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_120%,rgba(250,204,21,0.1),rgba(255,255,255,0))]"></div>
           
-          {/* Animated background elements */}
+          {/* Animated background elements with more movement */}
           <div className="absolute inset-0 -z-5 overflow-hidden">
-            <div className="parallax absolute top-20 left-20 w-64 h-64 rounded-full bg-yellow-400/5 blur-3xl" data-speed="0.05"></div>
-            <div className="parallax absolute bottom-10 right-10 w-96 h-96 rounded-full bg-yellow-500/5 blur-3xl" data-speed="-0.08"></div>
+            <div className="parallax absolute top-20 left-20 w-64 h-64 rounded-full bg-yellow-400/5 blur-3xl" data-speed="0.05" data-direction="scale"></div>
+            <div className="parallax absolute bottom-10 right-10 w-96 h-96 rounded-full bg-yellow-500/5 blur-3xl" data-speed="-0.08" data-direction="rotate"></div>
+            <div className="parallax absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-black/5 blur-xl" data-speed="0.15" data-direction="horizontal"></div>
           </div>
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="max-w-4xl mx-auto">
-              <div className="flex justify-center mb-4 animate-fade-in">
-                <CrashTestLogo size={80} />
+              <div className="flex justify-center mb-4 animate-fade-in relative key-element">
+                <div className="absolute -inset-4 animate-pulse-ring rounded-full opacity-75 bg-yellow-500/30"></div>
+                <CrashTestLogo size={80} className="relative animate-wiggle" />
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight animate-fade-in">
-                Elevating Software Quality
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight animate-fade-in relative">
+                <span className="relative inline-block">
+                  Elevating 
+                  <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-yellow-500 animate-ping-slow"></div>
+                </span> Software Quality
               </h1>
               <p className="mt-6 text-xl text-foreground/70 animate-fade-in" style={{ animationDelay: "0.1s" }}>
                 Empowering businesses with top-tier QA solutions – from manual testing to automation excellence.
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center" style={{ animationDelay: "0.2s" }}>
                 <a 
                   href="#services" 
-                  className="px-8 py-3 rounded-full bg-yellow-500 text-white shadow-sm hover:shadow-md transition-all hover:scale-105"
+                  className="relative px-8 py-3 rounded-full bg-yellow-500 text-white shadow-sm hover:shadow-md transition-all hover:scale-105 overflow-hidden group cta"
                 >
-                  Explore Services
+                  <span className="relative z-10">Explore Services</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-600 group-hover:animate-move-background"></span>
                 </a>
                 <a 
                   href="#contact" 
-                  className="px-8 py-3 rounded-full bg-white border border-gray-200 text-yellow-600 shadow-sm hover:shadow-md transition-all hover:scale-105"
+                  className="px-8 py-3 rounded-full bg-white border border-gray-200 text-yellow-600 shadow-sm hover:shadow-md transition-all hover:scale-105 overflow-hidden group cta"
                 >
-                  Contact Us
+                  <span className="relative z-10">Book a Meeting</span>
+                  <span className="absolute inset-0 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full bg-yellow-50/50"></span>
                 </a>
               </div>
             </div>
           </div>
           
-          {/* Animated arrows indicator */}
+          {/* Animated arrows indicator with better animation */}
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
             <div className="flex flex-col items-center">
-              <div className="animate-bounce-sequential">
+              <div className="animate-wave">
                 <svg width="20" height="10" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 1L10 9L19 1" stroke="#EAB308" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <div className="animate-bounce-sequential" style={{ animationDelay: "0.2s" }}>
+              <div className="animate-wave" style={{ animationDelay: "0.5s" }}>
                 <svg width="20" height="10" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 1L10 9L19 1" stroke="#EAB308" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
@@ -465,14 +533,17 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Services Section - REORDERED as requested */}
-        <section id="services" className="py-10 sm:py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
+        {/* Services Section - with reduced spacing */}
+        <section id="services" className="py-6 sm:py-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
             <div className="inline-flex items-center justify-center mb-4 reveal">
-              <CrashTestLogo size={30} className="mr-2" />
-              <div className="chip bg-yellow-100 text-yellow-800 border-yellow-200">Services</div>
+              <CrashTestLogo size={30} className="mr-2 animate-spin-slow" />
+              <div className="chip bg-yellow-100 text-yellow-800 border-yellow-200 relative">
+                <span>Services</span>
+                <span className="absolute -right-1 -top-1 w-2 h-2 rounded-full bg-yellow-400 animate-ping"></span>
+              </div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-medium mb-6 reveal">
+            <h2 className="text-3xl sm:text-4xl font-medium mb-4 reveal">
               Comprehensive QA Solutions
             </h2>
             <p className="text-foreground/70 max-w-3xl mx-auto reveal">
@@ -480,7 +551,9 @@ const Index = () => {
             </p>
           </div>
           
-          {/* 1. Manual Testing - FIRST as requested */}
+          {/* Services with reduced vertical spacing */}
+          
+          {/* 1. Manual Testing */}
           <ServiceSection
             id="service-1"
             title="Manual Testing: The Foundation of QA"
@@ -488,9 +561,10 @@ const Index = () => {
             label="Manual Testing"
             animationElement={<ManualTestingAnimation />}
             onVisibilityChange={trackServiceVisibility}
+            className="py-6"
           />
           
-          {/* 2. BDD & ATDD E2E Testing - SECOND as requested */}
+          {/* 2. BDD & ATDD E2E Testing */}
           <ServiceSection
             id="service-2"
             title="BDD & ATDD E2E Testing"
@@ -499,9 +573,10 @@ const Index = () => {
             isReversed={true}
             animationElement={<E2ETestingAnimation />}
             onVisibilityChange={trackServiceVisibility}
+            className="py-6"
           />
           
-          {/* 3. Visual Regression & Screenshot Testing - THIRD as requested */}
+          {/* Services 3-7 with reduced spacing */}
           <ServiceSection
             id="service-3"
             title="Visual Regression & Screenshot Testing"
@@ -509,9 +584,9 @@ const Index = () => {
             label="Screenshot Testing"
             animationElement={<ScreenshotTestingAnimation />}
             onVisibilityChange={trackServiceVisibility}
+            className="py-6"
           />
           
-          {/* 4. Backend, Performance & Load Testing */}
           <ServiceSection
             id="service-4"
             title="Performance & Load Testing"
@@ -520,9 +595,9 @@ const Index = () => {
             isReversed={true}
             animationElement={<BackendTestingAnimation />}
             onVisibilityChange={trackServiceVisibility}
+            className="py-6"
           />
           
-          {/* 5. CI/CD Integration */}
           <ServiceSection
             id="service-5"
             title="CI/CD Integration – Seamless Deployment"
@@ -530,9 +605,9 @@ const Index = () => {
             label="CI/CD Integration"
             animationElement={<CICDAnimation />}
             onVisibilityChange={trackServiceVisibility}
+            className="py-6"
           />
           
-          {/* 6. Best QA Practices */}
           <ServiceSection
             id="service-6"
             title="Best QA Practices"
@@ -541,9 +616,9 @@ const Index = () => {
             isReversed={true}
             animationElement={<BestPracticesAnimation />}
             onVisibilityChange={trackServiceVisibility}
+            className="py-6"
           />
           
-          {/* 7. Test Management & Reporting */}
           <ServiceSection
             id="service-7"
             title="Test Management & Reporting"
@@ -551,29 +626,33 @@ const Index = () => {
             label="Test Management"
             animationElement={<TestManagementAnimation />}
             onVisibilityChange={trackServiceVisibility}
+            className="py-6"
           />
         </section>
         
         {/* Quality Meter Section */}
-        <section className="py-16 bg-yellow-50/50">
+        <section className="py-14 bg-yellow-50/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <div className="flex justify-center mb-4">
-                <CrashTestLogo size={40} className="animate-spin-slow" />
+                <div className="relative">
+                  <CrashTestLogo size={40} className="animate-spin-slow" />
+                  <div className="absolute inset-0 bg-yellow-400/30 rounded-full animate-pulse-ring"></div>
+                </div>
               </div>
-              <h2 className="text-3xl font-medium mb-4">See the Quality Impact</h2>
-              <p className="text-foreground/70 max-w-2xl mx-auto">
+              <h2 className="text-3xl font-medium mb-4 reveal">See the Quality Impact</h2>
+              <p className="text-foreground/70 max-w-2xl mx-auto reveal">
                 Watch how your software quality improves as you implement more testing strategies in your development process.
               </p>
             </div>
             
             <QualityMeter servicesUsed={visibleServices} totalServices={7} />
             
-            <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100">
+            <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 transform transition-all hover:scale-105 hover:shadow-md">
                 <div className="flex items-center mb-4">
-                  <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
-                    <CheckIcon className="h-5 w-5 text-yellow-500" />
+                  <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center relative key-element">
+                    <CheckIcon className="h-5 w-5 text-yellow-500 animate-wiggle" />
                   </div>
                   <h3 className="font-medium">Higher Reliability</h3>
                 </div>
@@ -582,10 +661,10 @@ const Index = () => {
                 </p>
               </div>
               
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100">
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 transform transition-all hover:scale-105 hover:shadow-md">
                 <div className="flex items-center mb-4">
-                  <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
-                    <XIcon className="h-5 w-5 text-yellow-500" />
+                  <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center relative key-element">
+                    <XIcon className="h-5 w-5 text-yellow-500 animate-wiggle" style={{ animationDelay: "0.1s" }} />
                   </div>
                   <h3 className="font-medium">Fewer Regressions</h3>
                 </div>
@@ -594,10 +673,10 @@ const Index = () => {
                 </p>
               </div>
               
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100">
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 transform transition-all hover:scale-105 hover:shadow-md">
                 <div className="flex items-center mb-4">
-                  <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
-                    <FileCheck className="h-5 w-5 text-yellow-500" />
+                  <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center relative key-element">
+                    <FileCheck className="h-5 w-5 text-yellow-500 animate-wiggle" style={{ animationDelay: "0.2s" }} />
                   </div>
                   <h3 className="font-medium">Better UX</h3>
                 </div>
@@ -606,10 +685,10 @@ const Index = () => {
                 </p>
               </div>
               
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100">
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 transform transition-all hover:scale-105 hover:shadow-md">
                 <div className="flex items-center mb-4">
-                  <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
-                    <Clock className="h-5 w-5 text-yellow-500" />
+                  <div className="mr-4 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center relative key-element">
+                    <Clock className="h-5 w-5 text-yellow-500 animate-wiggle" style={{ animationDelay: "0.3s" }} />
                   </div>
                   <h3 className="font-medium">Faster Releases</h3>
                 </div>
@@ -621,7 +700,7 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Contact Section */}
+        {/* Contact Section - replaced with Book a Meeting */}
         <Contact />
       </main>
       

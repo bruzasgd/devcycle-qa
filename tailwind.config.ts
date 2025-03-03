@@ -179,16 +179,67 @@ export default {
 					'50%': { transform: 'translateY(-3px)' },
 					'100%': { transform: 'translateY(0)' }
 				},
-				// New animations for crash test theme
+				// Enhanced animations
 				'spin-slow': {
 					'0%': { transform: 'rotate(0deg)' },
 					'100%': { transform: 'rotate(360deg)' }
 				},
-				'ping': {
+				'ping-slow': {
 					'75%, 100%': {
-						transform: 'scale(1.5)',
+						transform: 'scale(1.8)',
 						opacity: '0'
 					}
+				},
+				'wiggle': {
+					'0%, 100%': { transform: 'rotate(-3deg)' },
+					'50%': { transform: 'rotate(3deg)' }
+				},
+				'pulse-ring': {
+					'0%': { transform: 'scale(0.8)', opacity: '0.8' },
+					'70%, 100%': { transform: 'scale(2)', opacity: '0' }
+				},
+				'float-shadow': {
+					'0%, 100%': { 
+						transform: 'translateY(0)',
+						'box-shadow': '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+					},
+					'50%': { 
+						transform: 'translateY(-10px)',
+						'box-shadow': '0 20px 25px -5px rgba(0, 0, 0, 0.1)'
+					}
+				},
+				'move-background': {
+					'0%': { 'background-position': '0% 50%' },
+					'50%': { 'background-position': '100% 50%' },
+					'100%': { 'background-position': '0% 50%' }
+				},
+				'ripple': {
+					'0%': { transform: 'scale(0)', opacity: '1' },
+					'100%': { transform: 'scale(2.5)', opacity: '0' }
+				},
+				'typing': {
+					'0%': { width: '0%' },
+					'50%': { width: '100%' },
+					'55%': { width: '100%' },
+					'100%': { width: '0%' }
+				},
+				'wave': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'20%': { transform: 'translateY(-10px)' },
+					'40%': { transform: 'translateY(0)' },
+					'60%': { transform: 'translateY(-5px)' },
+					'80%': { transform: 'translateY(0)' }
+				},
+				'shake': {
+					'0%, 100%': { transform: 'translateX(0)' },
+					'20%': { transform: 'translateX(-5px)' },
+					'40%': { transform: 'translateX(5px)' },
+					'60%': { transform: 'translateX(-3px)' },
+					'80%': { transform: 'translateX(3px)' }
+				},
+				'3d-flip': {
+					'0%': { transform: 'perspective(400px) rotateY(0)' },
+					'100%': { transform: 'perspective(400px) rotateY(360deg)' }
 				}
 			},
 			animation: {
@@ -218,9 +269,18 @@ export default {
 				'flow': 'flow 2s linear infinite',
 				'fade-in-out': 'fade-in-out 3s infinite',
 				'hover': 'hover 2s ease-in-out infinite',
-				// New animations for crash test theme
+				// New animations for enhanced scrolling
 				'spin-slow': 'spin-slow 12s linear infinite',
-				'ping': 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite'
+				'ping-slow': 'ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+				'wiggle': 'wiggle 1s ease-in-out infinite',
+				'pulse-ring': 'pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite',
+				'float-shadow': 'float-shadow 3s ease-in-out infinite',
+				'move-background': 'move-background 6s ease infinite',
+				'ripple': 'ripple 1s linear infinite',
+				'typing': 'typing 4s steps(40) infinite',
+				'wave': 'wave 2.5s ease infinite',
+				'shake': 'shake 0.8s cubic-bezier(.36,.07,.19,.97) both',
+				'3d-flip': '3d-flip 3s linear infinite'
 			}
 		}
 	},

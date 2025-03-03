@@ -407,59 +407,6 @@ const Index = () => {
     </div>
   );
 
-  useEffect(() => {
-    const addParticles = () => {
-      const container = document.createElement('div');
-      container.className = 'fixed inset-0 pointer-events-none z-10 overflow-hidden';
-      document.body.appendChild(container);
-      
-      // Create floating particles
-      for (let i = 0; i < 12; i++) {
-        const particle = document.createElement('div');
-        const size = Math.random() * 8 + 4;
-        const isYellow = Math.random() > 0.5;
-        
-        particle.className = `absolute rounded-full animate-float-shadow`;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.backgroundColor = isYellow ? '#FACC15' : '#000000';
-        particle.style.opacity = (Math.random() * 0.4 + 0.1).toString();
-        particle.style.left = `${Math.random() * 100}vw`;
-        particle.style.top = `${Math.random() * 100}vh`;
-        particle.style.animationDuration = `${Math.random() * 8 + 10}s`;
-        particle.style.animationDelay = `${Math.random() * 5}s`;
-        
-        container.appendChild(particle);
-      }
-      
-      // Event to update particles on scroll
-      const handleScroll = () => {
-        const scrollY = window.scrollY;
-        const particles = container.children;
-        
-        for (let i = 0; i < particles.length; i++) {
-          const particle = particles[i] as HTMLElement;
-          const speed = (i % 3 + 1) * 0.05;
-          const direction = i % 2 === 0 ? 1 : -1;
-          
-          particle.style.transform = `translateY(${scrollY * speed * direction}px) translateX(${scrollY * speed * -direction}px)`;
-        }
-      };
-      
-      window.addEventListener('scroll', handleScroll);
-      
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-        if (document.body.contains(container)) {
-          document.body.removeChild(container);
-        }
-      };
-    };
-    
-    const cleanup = addParticles();
-    return cleanup;
-  }, []);
-
   return (
     <div className="min-h-screen relative antialiased">
       <SmoothScroll />
@@ -475,9 +422,9 @@ const Index = () => {
           
           {/* Animated background elements with more subtle movement */}
           <div className="absolute inset-0 -z-5 overflow-hidden">
-            <div className="parallax absolute top-20 left-20 w-64 h-64 rounded-full bg-yellow-400/5 blur-3xl" data-speed="0.03" data-direction="scale"></div>
-            <div className="parallax absolute bottom-10 right-10 w-96 h-96 rounded-full bg-yellow-500/5 blur-3xl" data-speed="-0.04" data-direction="rotate"></div>
-            <div className="parallax absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-black/5 blur-xl" data-speed="0.07" data-direction="horizontal"></div>
+            <div className="parallax absolute top-20 left-20 w-64 h-64 rounded-full bg-yellow-400/5 blur-3xl" data-speed="0.02" data-direction="scale"></div>
+            <div className="parallax absolute bottom-10 right-10 w-96 h-96 rounded-full bg-yellow-500/5 blur-3xl" data-speed="-0.02" data-direction="rotate"></div>
+            <div className="parallax absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-black/5 blur-xl" data-speed="0.04" data-direction="horizontal"></div>
           </div>
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

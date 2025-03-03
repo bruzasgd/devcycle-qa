@@ -1,35 +1,42 @@
 
 import { useEffect } from "react";
 
+/**
+ * SmoothScroll component provides enhanced scrolling behavior
+ * including smooth anchor scrolling and reveal animations
+ */
 const SmoothScroll = () => {
   useEffect(() => {
-    // Smooth scroll to anchor links with enhanced experience
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === "#") return;
+    // Smooth scroll to anchor links with subtle experience
+    const handleAnchorClick = function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId === "#") return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        // Add a very subtle highlight effect to the target element
+        targetElement.classList.add('gentle-pulse');
         
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          // Add a very subtle pulse effect to the target element
-          targetElement.classList.add('gentle-pulse');
-          
-          // Smooth scroll with enhanced behavior
-          window.scrollTo({
-            top: targetElement.getBoundingClientRect().top + window.scrollY - 100,
-            behavior: 'smooth'
-          });
-          
-          // Remove pulse effect after animation completes
-          setTimeout(() => {
-            targetElement.classList.remove('gentle-pulse');
-          }, 1500);
-        }
-      });
+        // Smooth scroll with enhanced behavior
+        window.scrollTo({
+          top: targetElement.getBoundingClientRect().top + window.scrollY - 100,
+          behavior: 'smooth'
+        });
+        
+        // Remove pulse effect after animation completes
+        setTimeout(() => {
+          targetElement.classList.remove('gentle-pulse');
+        }, 1500);
+      }
+    };
+
+    // Add event listeners to all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', handleAnchorClick);
     });
 
-    // Enhanced Intersection Observer for reveal animations with staggered timing and dynamic effects
+    // Intersection Observer for reveal animations
     const observerOptions = {
       root: null,
       rootMargin: '0px',
@@ -39,11 +46,11 @@ const SmoothScroll = () => {
     const handleIntersect = (entries, observer) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          // Add a small delay based on the element's position to create a cascade effect
+          // Add a small delay based on the element's position
           setTimeout(() => {
             entry.target.classList.add('revealed');
             
-            // Add subtle effects for key elements - no particles
+            // Add subtle effects for key elements
             if (entry.target.classList.contains('key-element')) {
               entry.target.classList.add('subtle-highlight');
             }
@@ -54,6 +61,7 @@ const SmoothScroll = () => {
             }
           }, index * 100); // Staggered delay
           
+          // Don't observe again if animate-once
           if (entry.target.dataset.animateOnce !== 'false') {
             observer.unobserve(entry.target);
           }
@@ -66,7 +74,7 @@ const SmoothScroll = () => {
     // Select all elements with reveal classes
     const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .fade-up, .fade-in, .scale-in');
     
-    // Sort elements by their vertical position to create a natural flow
+    // Sort elements by their vertical position for natural flow
     const sortedElements = Array.from(revealElements).sort((a, b) => {
       return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
     });
@@ -75,24 +83,25 @@ const SmoothScroll = () => {
       observer.observe(el);
     });
 
-    // Enhanced parallax scroll effect for background elements with smoother performance
+    // Parallax scroll effect for background elements - simplified
     const handleParallax = () => {
       const scrollY = window.scrollY;
       
       document.querySelectorAll('.parallax').forEach(element => {
-        const speed = element.getAttribute('data-speed') || "0.2";
+        const speed = element.getAttribute('data-speed') || "0.1"; // Reduced default speed
         const direction = element.getAttribute('data-direction') || "vertical";
         
-        // Fix type error by ensuring element is HTMLElement and speed is converted to number
         if (element instanceof HTMLElement) {
           if (direction === "vertical") {
             element.style.transform = `translateY(${scrollY * parseFloat(speed)}px)`;
           } else if (direction === "horizontal") {
             element.style.transform = `translateX(${scrollY * parseFloat(speed)}px)`;
           } else if (direction === "rotate") {
-            element.style.transform = `rotate(${scrollY * parseFloat(speed) * 0.05}deg)`;
+            // Reduced rotation speed
+            element.style.transform = `rotate(${scrollY * parseFloat(speed) * 0.02}deg)`;
           } else if (direction === "scale") {
-            const baseScale = 1 + (scrollY * parseFloat(speed) * 0.001);
+            // Reduced scale effect
+            const baseScale = 1 + (scrollY * parseFloat(speed) * 0.0005);
             element.style.transform = `scale(${baseScale})`;
           }
         }
@@ -106,21 +115,19 @@ const SmoothScroll = () => {
       }
     };
     
-    // No longer need createParticles function - removed
-    
     // Add scroll progress indicator to the DOM
     const progressIndicator = document.createElement('div');
     progressIndicator.className = 'fixed top-0 left-0 w-full h-1 z-50';
     progressIndicator.innerHTML = '<div class="scroll-progress-bar h-full bg-yellow-500 origin-left"></div>';
     document.body.appendChild(progressIndicator);
     
-    // Add scroll event for parallax and other scroll-based effects
+    // Add scroll event for parallax effects
     window.addEventListener('scroll', handleParallax, { passive: true });
     
     // Initialize parallax on load
     handleParallax();
     
-    // Add keyframe animations but make pulse more subtle
+    // Add keyframe animations but make very subtle
     const style = document.createElement('style');
     style.textContent = `
       .gentle-pulse {
@@ -128,8 +135,8 @@ const SmoothScroll = () => {
       }
       
       @keyframes gentle-highlight {
-        0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.1); }
-        70% { box-shadow: 0 0 0 8px rgba(250, 204, 21, 0); }
+        0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.05); }
+        70% { box-shadow: 0 0 0 4px rgba(250, 204, 21, 0); }
         100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
       }
       
@@ -138,8 +145,8 @@ const SmoothScroll = () => {
       }
       
       @keyframes subtle-glow {
-        0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.1); }
-        50% { box-shadow: 0 0 0 5px rgba(250, 204, 21, 0.05); }
+        0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.05); }
+        50% { box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.02); }
         100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
       }
       
@@ -149,9 +156,17 @@ const SmoothScroll = () => {
     `;
     document.head.appendChild(style);
 
+    // Clean up function
     return () => {
-      // Clean up
+      // Remove event listeners from anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.removeEventListener('click', handleAnchorClick);
+      });
+      
+      // Disconnect intersection observer
       observer.disconnect();
+      
+      // Remove scroll event listener
       window.removeEventListener('scroll', handleParallax);
       
       // Remove progress indicator

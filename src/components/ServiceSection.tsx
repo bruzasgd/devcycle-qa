@@ -11,6 +11,7 @@ interface ServiceSectionProps {
   isReversed?: boolean;
   animationElement: ReactNode;
   onVisibilityChange?: (isVisible: boolean, id: string) => void;
+  className?: string; // Added className prop
 }
 
 const ServiceSection = ({
@@ -21,6 +22,7 @@ const ServiceSection = ({
   isReversed = false,
   animationElement,
   onVisibilityChange,
+  className = "", // Default value
 }: ServiceSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   
@@ -37,7 +39,7 @@ const ServiceSection = ({
   return (
     <section 
       id={id} 
-      className="py-12 sm:py-16 overflow-hidden border-b border-gray-100 last:border-b-0" 
+      className={`py-12 sm:py-16 overflow-hidden border-b border-gray-100 last:border-b-0 ${className}`} 
       ref={sectionRef}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

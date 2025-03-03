@@ -220,7 +220,7 @@ const Contact = () => {
                     <div className="mr-3 h-6 w-6 rounded-full bg-yellow-500/20 flex items-center justify-center">
                       <span className="animate-bounce-sequential">✉️</span>
                     </div>
-                    <p className="text-sm">contact@crashtest.com</p>
+                    <p className="text-sm">contact@devcycleqa.com</p>
                   </div>
                   <div className="flex items-center">
                     <div className="mr-3 h-6 w-6 rounded-full bg-yellow-500/20 flex items-center justify-center">

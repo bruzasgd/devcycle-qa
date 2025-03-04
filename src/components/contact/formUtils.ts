@@ -37,7 +37,7 @@ export const handleFormSubmit = async (
     
     // Send to email using FormSubmit service
     // Using contact@devcycleqa.com which redirects to bruzasgd@gmail.com
-    const response = await fetch("https://formsubmit.co/contact@devcycleqa.com", {
+    const response = await fetch("https://formsubmit.co/bruzasgd@gmail.com", {
       method: "POST",
       body: formData,
     });

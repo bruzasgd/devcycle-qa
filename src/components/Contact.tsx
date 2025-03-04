@@ -1,6 +1,7 @@
 
 import { useState } from "react";
-import { CalendarDays, Clock, Send, Check, Calendar } from "lucide-react";
+import { CalendarDays, Clock, Check, Calendar } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const [formState, setFormState] = useState({
@@ -22,27 +23,63 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormState({
-        name: "",
-        email: "",
-        date: "",
-        time: "",
-        message: ""
+    // Email submission logic
+    try {
+      // Option 1: Using a free form service like FormSubmit
+      // This needs no backend, just change the form action and method
+      // You can uncomment this and add your email to activate it
+      
+      // Create form data
+      const formData = new FormData();
+      formData.append('name', formState.name);
+      formData.append('email', formState.email);
+      formData.append('date', formState.date);
+      formData.append('time', formState.time);
+      formData.append('message', formState.message);
+      formData.append('_subject', `Meeting Request from ${formState.name}`);
+      
+      // Send to email using FormSubmit service
+      const response = await fetch("https://formsubmit.co/bruzasgd@gmail.com", {
+        method: "POST",
+        body: formData,
       });
       
-      // Reset submission state after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 3000);
-    }, 1500);
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormState({
+          name: "",
+          email: "",
+          date: "",
+          time: "",
+          message: ""
+        });
+        
+        toast({
+          title: "Meeting scheduled",
+          description: "We'll contact you soon to confirm the details.",
+        });
+        
+        // Reset submission state after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 3000);
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send your message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -51,7 +88,6 @@ const Contact = () => {
         <div className="text-center max-w-2xl mx-auto mb-10 reveal">
           <div className="relative inline-block">
             <div className="chip inline-block mb-4">Let's Connect</div>
-            <div className="absolute -top-2 -right-2 w-2 h-2 rounded-full bg-yellow-400 animate-ping-slow"></div>
           </div>
           <h2 className="text-3xl sm:text-4xl font-medium mb-4">
             Book a Meeting With Us
@@ -66,6 +102,13 @@ const Contact = () => {
             <div className="grid md:grid-cols-5 gap-0">
               {/* Form section */}
               <div className="md:col-span-3 p-6 sm:p-8">
+                {/* 
+                // Alternative implementation using FormSubmit:
+                // Replace the <form> tag below with this to use formsubmit.co service directly:
+                // <form action="https://formsubmit.co/bruzasgd@gmail.com" method="POST" className="space-y-4">
+                // <input type="hidden" name="_subject" value="New Meeting Request" />
+                // <input type="hidden" name="_captcha" value="false" />
+                */}
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
@@ -208,7 +251,7 @@ const Contact = () => {
                       <div key={day} className="text-center">
                         <div className="text-[10px] font-medium text-foreground/60 mb-1">{day}</div>
                         <div className="w-full aspect-square rounded-md bg-yellow-50 border border-yellow-100 flex items-center justify-center text-yellow-800 text-xs font-medium hover:bg-yellow-100 transition-colors cursor-pointer">
-                          <span className="animate-pulse-subtle">✓</span>
+                          <span>✓</span>
                         </div>
                       </div>
                     ))}
@@ -218,19 +261,19 @@ const Contact = () => {
                 <div className="space-y-3">
                   <div className="flex items-center">
                     <div className="mr-3 h-6 w-6 rounded-full bg-yellow-500/20 flex items-center justify-center">
-                      <span className="animate-bounce-sequential">✉️</span>
+                      <span>✉️</span>
                     </div>
                     <p className="text-sm">contact@devcycleqa.com</p>
                   </div>
                   <div className="flex items-center">
                     <div className="mr-3 h-6 w-6 rounded-full bg-yellow-500/20 flex items-center justify-center">
-                      <span className="animate-bounce-sequential" style={{ animationDelay: "0.1s" }}>📱</span>
+                      <span>📱</span>
                     </div>
                     <p className="text-sm">+370 62728 602</p>
                   </div>
                   <div className="flex items-center">
                     <div className="mr-3 h-6 w-6 rounded-full bg-yellow-500/20 flex items-center justify-center">
-                      <span className="animate-bounce-sequential" style={{ animationDelay: "0.2s" }}>🌐</span>
+                      <span>🌐</span>
                     </div>
                     <p className="text-sm">Remote & On-site Available</p>
                   </div>

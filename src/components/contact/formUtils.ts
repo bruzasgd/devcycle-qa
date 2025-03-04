@@ -36,7 +36,8 @@ export const handleFormSubmit = async (
     formData.append('_subject', `Meeting Request from ${formState.name}`);
     
     // Send to email using FormSubmit service
-    const response = await fetch("https://formsubmit.co/bruzasgd@gmail.com", {
+    // Using contact@devcycleqa.com which redirects to bruzasgd@gmail.com
+    const response = await fetch("https://formsubmit.co/contact@devcycleqa.com", {
       method: "POST",
       body: formData,
     });

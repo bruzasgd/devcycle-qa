@@ -10,6 +10,7 @@ import HeroSection from "../components/home/HeroSection";
 import ServicesSection from "../components/home/ServicesSection";
 import QualityImpactSection from "../components/home/QualityImpactSection";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
+import { trackServiceVisibility } from "../utils/visibilityTracking";
 
 const Index = () => {
   // State to track which testing services are visible on screen
@@ -24,15 +25,8 @@ const Index = () => {
   });
   
   // Function to track visible services - will be attached to section visibility
-  const trackServiceVisibility = (isVisible: boolean, serviceId: string) => {
-    if (isVisible) {
-      setVisibleServices(prev => {
-        // Extract the service number from the ID (e.g., "service-3" gives us 3)
-        const serviceNumber = parseInt(serviceId.split('-')[1]);
-        // Return the maximum service number seen so far
-        return Math.max(prev, serviceNumber);
-      });
-    }
+  const handleServiceVisibility = (isVisible: boolean, serviceId: string) => {
+    trackServiceVisibility(isVisible, serviceId, setVisibleServices);
   };
 
   return (
@@ -50,7 +44,7 @@ const Index = () => {
         </div>
         
         {/* Services Section */}
-        <ServicesSection onVisibilityChange={trackServiceVisibility} />
+        <ServicesSection onVisibilityChange={handleServiceVisibility} />
         
         {/* Quality Impact Section */}
         <QualityImpactSection servicesUsed={visibleServices} />

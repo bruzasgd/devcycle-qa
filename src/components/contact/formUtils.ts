@@ -1,4 +1,3 @@
-
 import { toast } from "@/hooks/use-toast";
 
 export interface FormState {
@@ -35,11 +34,21 @@ export const handleFormSubmit = async (
     formData.append('message', formState.message);
     formData.append('_subject', `Meeting Request from ${formState.name}`);
     
-    // Send to email using FormSubmit service
-    // Using contact@devcycleqa.com which redirects to bruzasgd@gmail.com
-    const response = await fetch("https://formsubmit.co/bruzasgd@gmail.com", {
+    // Send to FormSubmit service
+    const response = await fetch("https://formsubmit.co/ajax/bruzasgd@gmail.com", {
       method: "POST",
-      body: formData,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: formState.name,
+        email: formState.email,
+        date: formState.date,
+        time: formState.time,
+        message: formState.message,
+        _subject: `Meeting Request from ${formState.name}`
+      })
     });
     
     if (response.ok) {

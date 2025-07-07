@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Clock } from "lucide-react";
 
@@ -19,7 +18,7 @@ const TimeSelect = ({ value, onChange }: TimeSelectProps) => {
           name="time"
           value={value}
           onChange={onChange}
-          required
+          required={false}
           className="w-full px-4 py-2 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-yellow-500/50 transition-all appearance-none"
         >
           <option value="">Select a time...</option>

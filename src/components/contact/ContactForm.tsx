@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { CalendarDays } from "lucide-react";
 import FormInput from "./FormInput";
@@ -57,7 +56,7 @@ const ContactForm = () => {
           value={formState.date}
           onChange={handleChange}
           label="Preferred Date"
-          required
+          required={false}
           icon={<CalendarDays size={16} />}
           min={new Date().toISOString().split('T')[0]}
         />

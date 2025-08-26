@@ -9,6 +9,8 @@ import BackendTestingAnimation from '../animations/BackendTestingAnimation';
 import CICDAnimation from '../animations/CICDAnimation';
 import BestPracticesAnimation from '../animations/BestPracticesAnimation';
 import TestManagementAnimation from '../animations/TestManagementAnimation';
+import AITestGenerationAnimation from '../animations/AITestGenerationAnimation';
+import SmartAnalyticsAnimation from '../animations/SmartAnalyticsAnimation';
 
 interface ServicesSectionProps {
   onVisibilityChange: (isVisible: boolean, serviceId: string) => void;
@@ -25,29 +27,29 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
           </div>
         </div>
         <h2 className="text-3xl sm:text-4xl font-medium mb-4 reveal">
-          Comprehensive QA Solutions
+          AI-Powered QA Solutions
         </h2>
         <p className="text-foreground/70 max-w-3xl mx-auto reveal">
-          We offer a full spectrum of testing and quality assurance services to ensure your software delivers exceptional experiences.
+          We leverage cutting-edge AI technology alongside proven QA practices to deliver intelligent testing solutions that evolve with your software.
         </p>
       </div>
       
       {/* Services with reduced vertical spacing */}
       <ServiceSection
         id="service-1"
-        title="Manual Testing: The Foundation of QA"
-        description="Manual testing is the backbone of software quality, ensuring precise human validation of functionality. However, it's time-consuming and prone to human error. We help you establish reliable manual testing processes while identifying opportunities for automation."
-        label="Manual Testing"
-        animationElement={<ManualTestingAnimation />}
+        title="AI-Enhanced Test Generation & Automation"
+        description="Transform your testing approach with AI-powered test case generation. Our intelligent algorithms analyze your application behavior, user flows, and business logic to automatically create comprehensive test scenarios, reducing manual effort while increasing coverage and accuracy."
+        label="AI Test Generation"
+        animationElement={<AITestGenerationAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-6"
       />
       
       <ServiceSection
         id="service-2"
-        title="BDD & ATDD E2E Testing"
-        description="Bridge the gap between business requirements and technical implementation with Behavior-Driven Development (BDD) and Acceptance Test-Driven Development (ATDD). Our approach uses Given-When-Then scenarios that everyone understands, from developers to stakeholders."
-        label="E2E Testing"
+        title="Smart BDD & AI-Driven E2E Testing"
+        description="Bridge the gap between business requirements and technical implementation with AI-enhanced Behavior-Driven Development. Our intelligent system automatically generates Given-When-Then scenarios from requirements, creates self-healing test scripts, and adapts to UI changes without manual intervention."
+        label="Smart E2E Testing"
         isReversed={true}
         animationElement={<E2ETestingAnimation />}
         onVisibilityChange={onVisibilityChange}
@@ -56,9 +58,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-3"
-        title="Visual Regression & Screenshot Testing"
-        description="Detect unwanted visual changes automatically. Our screenshot testing captures UI regressions by comparing images pixel-by-pixel, ensuring your users always experience a visually consistent interface across all browsers and devices."
-        label="Screenshot Testing"
+        title="AI-Powered Visual Intelligence & Regression Testing"
+        description="Advanced computer vision AI detects visual anomalies beyond pixel-perfect comparisons. Our intelligent algorithms understand design intent, ignore acceptable variations, and flag meaningful visual regressions while adapting to responsive design changes across devices and browsers."
+        label="AI Visual Testing"
         animationElement={<ScreenshotTestingAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-6"
@@ -66,9 +68,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-4"
-        title="Performance & Load Testing"
-        description="Ensure your system is robust under any load. We test APIs, databases, and system performance under stress conditions to identify bottlenecks and optimize performance before they impact your users."
-        label="Performance Testing"
+        title="Intelligent Performance & Predictive Load Testing"
+        description="AI-driven performance testing that learns your system's behavior patterns and predicts potential bottlenecks. Our machine learning algorithms analyze historical data to simulate realistic load scenarios, automatically adjust test parameters, and provide actionable optimization recommendations."
+        label="AI Performance Testing"
         isReversed={true}
         animationElement={<BackendTestingAnimation />}
         onVisibilityChange={onVisibilityChange}
@@ -77,9 +79,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-5"
-        title="CI/CD Integration – Seamless Deployment"
-        description="Integrate QA seamlessly into your development pipeline with Azure, GitHub, and Jenkins. Our CI/CD integration ensures quality gates at every stage, catching issues before they reach production."
-        label="CI/CD Integration"
+        title="Smart CI/CD with Intelligent Quality Gates"
+        description="AI-enhanced CI/CD pipelines that learn from deployment patterns and automatically adjust quality thresholds. Our intelligent system predicts deployment risks, suggests optimal testing strategies, and implements dynamic quality gates that adapt to your codebase evolution."
+        label="Smart CI/CD"
         animationElement={<CICDAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-6"
@@ -87,9 +89,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-6"
-        title="Best QA Practices"
-        description="We establish clear Definition of Ready (DOR) & Definition of Done (DOD), aligning QA with Agile workflows for optimal efficiency. Our quality-first approach ensures requirements clarity and comprehensive test coverage."
-        label="Best Practices"
+        title="AI-Driven QA Strategy & Best Practices"
+        description="Leverage machine learning to continuously optimize your QA processes. Our AI analyzes team performance, identifies bottlenecks, and recommends personalized improvements to Definition of Ready and Done criteria, ensuring your QA practices evolve with your development velocity."
+        label="Smart QA Strategy"
         isReversed={true}
         animationElement={<BestPracticesAnimation />}
         onVisibilityChange={onVisibilityChange}
@@ -98,10 +100,10 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-7"
-        title="Test Management & Reporting"
-        description="Gain complete visibility into your QA process with our test management solutions. Track test execution, coverage metrics, and uncover insights to continuously improve your testing strategy."
-        label="Test Management"
-        animationElement={<TestManagementAnimation />}
+        title="Intelligent Test Analytics & Predictive Reporting"
+        description="Transform raw testing data into actionable insights with AI-powered analytics. Our machine learning algorithms predict quality trends, identify high-risk areas, generate automated reports, and provide intelligent recommendations to optimize your testing ROI and prevent defects."
+        label="AI Analytics"
+        animationElement={<SmartAnalyticsAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-6"
       />

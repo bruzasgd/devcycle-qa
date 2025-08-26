@@ -79,9 +79,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-5"
-        title="CI/CD Integration – Seamless Deployment"
-        description="Integrate QA seamlessly into your development pipeline with Azure, GitHub, and Jenkins. Our CI/CD integration ensures quality gates at every stage, with intelligent failure analysis and automated reporting to catch issues before they reach production."
-        label="CI/CD Integration"
+        title="Multi-Stage CI/CD Pipeline with Progressive Testing"
+        description="Deploy safely through development, staging, and production environments with comprehensive testing at each stage. Our CI/CD pipelines run unit tests in development, integration tests in staging, and smoke tests in production, with automated rollback capabilities and intelligent failure analysis."
+        label="Multi-Stage CI/CD"
         animationElement={<CICDAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-6"

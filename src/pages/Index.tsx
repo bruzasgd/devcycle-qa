@@ -9,6 +9,7 @@ import TestingPipeline from "../components/TestingPipeline";
 import HeroSection from "../components/home/HeroSection";
 import ServicesSection from "../components/home/ServicesSection";
 import QualityImpactSection from "../components/home/QualityImpactSection";
+import ClientExperienceSection from "../components/home/ClientExperienceSection";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { trackServiceVisibility } from "../utils/visibilityTracking";
 
@@ -42,6 +43,9 @@ const Index = () => {
         <div ref={heroRef}>
           <HeroSection />
         </div>
+        
+        {/* Client Experience Section */}
+        <ClientExperienceSection />
         
         {/* Services Section */}
         <ServicesSection onVisibilityChange={handleServiceVisibility} />

@@ -44,9 +44,6 @@ const Index = () => {
           <HeroSection />
         </div>
         
-        {/* Client Experience Section */}
-        <ClientExperienceSection />
-        
         {/* Services Section */}
         <ServicesSection onVisibilityChange={handleServiceVisibility} />
         
@@ -55,6 +52,9 @@ const Index = () => {
         
         {/* Contact Section */}
         <Contact />
+        
+        {/* Client Experience Section */}
+        <ClientExperienceSection />
       </main>
       
       <Footer />

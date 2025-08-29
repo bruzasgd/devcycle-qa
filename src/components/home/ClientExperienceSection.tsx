@@ -24,17 +24,17 @@ const ClientExperienceSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center">
           {clients.map((client, index) => (
             <div 
               key={client.name}
-              className="flex items-center justify-center p-6 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+              className="flex items-center justify-center p-8 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <img
                 src={client.logo}
                 alt={`${client.name} logo`}
-                className="h-12 md:h-16 w-auto object-contain filter opacity-60 hover:opacity-100 transition-opacity duration-300"
+                className="h-20 md:h-24 w-auto object-contain filter opacity-60 hover:opacity-100 transition-opacity duration-300"
               />
             </div>
           ))}

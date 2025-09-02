@@ -13,15 +13,12 @@ const ClientExperienceSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-background/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-medium text-foreground mb-4">
+    <section className="py-12 bg-background/50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-medium text-foreground mb-3">
             Trusted by Industry Leaders
           </h2>
-          <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-            Our experience ranges from working with names like Vodafone, IBM, Accenture, Danske Bank to smaller teams that want to release their products faster and with higher quality.
-          </p>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center">

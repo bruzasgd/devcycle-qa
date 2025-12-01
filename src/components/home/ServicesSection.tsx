@@ -37,6 +37,27 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       {/* Services with reduced vertical spacing */}
       <ServiceSection
         id="service-1"
+        title="Migration from Manual to Automation Testing"
+        description="Seamlessly transition from time-consuming manual testing to efficient automated workflows. We assess your current testing processes, identify automation opportunities, implement scalable frameworks (Playwright, Cypress, Selenium), and train your team to maintain and expand test coverage with minimal disruption."
+        label="Automation Migration"
+        animationElement={<MigrationAutomationAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-2"
+        title="Custom AI Agents with System Prompts & MCPs"
+        description="Build intelligent QA agents tailored to your workflow using Model Context Protocol (MCP) integrations. Connect to GitHub for code analysis, Jira for test management, Slack for notifications, and test databases for data-driven testing. Our custom AI agents with fine-tuned system prompts automate decision-making, orchestrate test execution, and provide contextual insights across your entire QA ecosystem."
+        label="AI Agent Orchestration"
+        isReversed={true}
+        animationElement={<AIAgentMCPAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-3"
         title="AI-Assisted Test Generation & Manual Testing"
         description="We combine the precision of manual testing with AI-powered test case generation. Our intelligent tools help create comprehensive test scenarios from requirements while maintaining the human insight needed for edge cases and user experience validation."
         label="Smart Test Generation"
@@ -46,7 +67,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       />
       
       <ServiceSection
-        id="service-2"
+        id="service-4"
         title="BDD & ATDD E2E Testing"
         description="Bridge the gap between business requirements and technical implementation with Behavior-Driven Development (BDD) and Acceptance Test-Driven Development (ATDD). Our approach uses Given-When-Then scenarios that everyone understands, from developers to stakeholders."
         label="E2E Testing"
@@ -57,7 +78,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       />
       
       <ServiceSection
-        id="service-3"
+        id="service-5"
         title="AI-Enhanced Visual Regression Testing"
         description="Advanced computer vision technology detects meaningful visual changes beyond pixel-perfect comparisons. Our AI algorithms understand design intent, ignore acceptable variations like dynamic content, and flag actual visual regressions across devices and browsers."
         label="Smart Visual Testing"
@@ -67,7 +88,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       />
       
       <ServiceSection
-        id="service-4"
+        id="service-6"
         title="Performance & Load Testing"
         description="Comprehensive performance testing that ensures your system is robust under any load. We test APIs, databases, and system performance under stress conditions, with intelligent analysis to identify bottlenecks and provide actionable optimization recommendations."
         label="Performance Testing"
@@ -78,7 +99,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       />
       
       <ServiceSection
-        id="service-5"
+        id="service-7"
         title="Multi-Stage CI/CD Pipeline with Progressive Testing"
         description="Deploy safely through development, staging, and production environments with comprehensive testing at each stage. Our CI/CD pipelines run unit tests in development, integration tests in staging, and smoke tests in production, with automated rollback capabilities and intelligent failure analysis."
         label="Multi-Stage CI/CD"
@@ -88,7 +109,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       />
       
       <ServiceSection
-        id="service-6"
+        id="service-8"
         title="QA Strategy & Best Practices"
         description="We establish clear Definition of Ready (DOR) & Definition of Done (DOD), aligning QA with Agile workflows for optimal efficiency. Our quality-first approach ensures requirements clarity, comprehensive test coverage, and continuous process improvement."
         label="QA Strategy"
@@ -99,32 +120,11 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       />
       
       <ServiceSection
-        id="service-7"
+        id="service-9"
         title="Intelligent Test Analytics & Reporting"
         description="Transform raw testing data into actionable insights with smart analytics. Our system identifies quality trends, highlights high-risk areas, generates comprehensive reports, and provides data-driven recommendations to optimize your testing strategy and prevent defects."
         label="Smart Analytics"
         animationElement={<SmartAnalyticsAnimation />}
-        onVisibilityChange={onVisibilityChange}
-        className="py-6"
-      />
-      
-      <ServiceSection
-        id="service-8"
-        title="Migration from Manual to Automation Testing"
-        description="Seamlessly transition from time-consuming manual testing to efficient automated workflows. We assess your current testing processes, identify automation opportunities, implement scalable frameworks (Playwright, Cypress, Selenium), and train your team to maintain and expand test coverage with minimal disruption."
-        label="Automation Migration"
-        isReversed={true}
-        animationElement={<MigrationAutomationAnimation />}
-        onVisibilityChange={onVisibilityChange}
-        className="py-6"
-      />
-      
-      <ServiceSection
-        id="service-9"
-        title="Custom AI Agents with System Prompts & MCPs"
-        description="Build intelligent QA agents tailored to your workflow using Model Context Protocol (MCP) integrations. Connect to GitHub for code analysis, Jira for test management, Slack for notifications, and test databases for data-driven testing. Our custom AI agents with fine-tuned system prompts automate decision-making, orchestrate test execution, and provide contextual insights across your entire QA ecosystem."
-        label="AI Agent Orchestration"
-        animationElement={<AIAgentMCPAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-6"
       />

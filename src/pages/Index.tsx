@@ -36,7 +36,7 @@ const Index = () => {
       <Header />
       
       {/* Testing Pipeline */}
-      <TestingPipeline activeStep={visibleServices} totalSteps={7} />
+      <TestingPipeline activeStep={visibleServices} totalSteps={9} />
       
       <main>
         {/* Hero Section */}

@@ -2,15 +2,15 @@
 import React from 'react';
 import ServiceSection from '../ServiceSection';
 import CrashTestLogo from '../CrashTestLogo';
-import ManualTestingAnimation from '../animations/ManualTestingAnimation';
 import E2ETestingAnimation from '../animations/E2ETestingAnimation';
 import ScreenshotTestingAnimation from '../animations/ScreenshotTestingAnimation';
 import BackendTestingAnimation from '../animations/BackendTestingAnimation';
 import CICDAnimation from '../animations/CICDAnimation';
 import BestPracticesAnimation from '../animations/BestPracticesAnimation';
-import TestManagementAnimation from '../animations/TestManagementAnimation';
 import AITestGenerationAnimation from '../animations/AITestGenerationAnimation';
 import SmartAnalyticsAnimation from '../animations/SmartAnalyticsAnimation';
+import MigrationAutomationAnimation from '../animations/MigrationAutomationAnimation';
+import AIAgentMCPAnimation from '../animations/AIAgentMCPAnimation';
 
 interface ServicesSectionProps {
   onVisibilityChange: (isVisible: boolean, serviceId: string) => void;
@@ -104,6 +104,27 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
         description="Transform raw testing data into actionable insights with smart analytics. Our system identifies quality trends, highlights high-risk areas, generates comprehensive reports, and provides data-driven recommendations to optimize your testing strategy and prevent defects."
         label="Smart Analytics"
         animationElement={<SmartAnalyticsAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-8"
+        title="Migration from Manual to Automation Testing"
+        description="Seamlessly transition from time-consuming manual testing to efficient automated workflows. We assess your current testing processes, identify automation opportunities, implement scalable frameworks (Playwright, Cypress, Selenium), and train your team to maintain and expand test coverage with minimal disruption."
+        label="Automation Migration"
+        isReversed={true}
+        animationElement={<MigrationAutomationAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-9"
+        title="Custom AI Agents with System Prompts & MCPs"
+        description="Build intelligent QA agents tailored to your workflow using Model Context Protocol (MCP) integrations. Connect to GitHub for code analysis, Jira for test management, Slack for notifications, and test databases for data-driven testing. Our custom AI agents with fine-tuned system prompts automate decision-making, orchestrate test execution, and provide contextual insights across your entire QA ecosystem."
+        label="AI Agent Orchestration"
+        animationElement={<AIAgentMCPAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-6"
       />

@@ -24,7 +24,7 @@ const QualityImpactSection: React.FC<QualityImpactSectionProps> = ({ servicesUse
           </p>
         </div>
         
-        <QualityMeter servicesUsed={servicesUsed} totalServices={7} />
+        <QualityMeter servicesUsed={servicesUsed} totalServices={9} />
         
         <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 transform transition-all hover:scale-105 hover:shadow-md">

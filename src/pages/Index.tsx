@@ -47,14 +47,14 @@ const Index = () => {
         {/* Services Section */}
         <ServicesSection onVisibilityChange={handleServiceVisibility} />
         
-        {/* Client Experience Section */}
-        <ClientExperienceSection />
-        
         {/* Quality Impact Section */}
         <QualityImpactSection servicesUsed={visibleServices} />
         
         {/* Contact Section */}
         <Contact />
+        
+        {/* Client Experience Section */}
+        <ClientExperienceSection />
       </main>
       
       <Footer />

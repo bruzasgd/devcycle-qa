@@ -13,12 +13,15 @@ const ClientExperienceSection = () => {
   ];
 
   return (
-    <section className="py-12 bg-background/50">
+    <section className="py-12 bg-background/50" aria-labelledby="clients-heading">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-medium text-foreground mb-3">
-            Trusted by Industry Leaders
+          <h2 id="clients-heading" className="text-2xl font-medium text-foreground mb-3">
+            Trusted by Industry-Leading Companies
           </h2>
+          <p className="text-foreground/70 max-w-2xl mx-auto">
+            DevCycleQA provides QA testing services to global enterprises including Fortune 500 companies
+          </p>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center">
@@ -30,8 +33,9 @@ const ClientExperienceSection = () => {
             >
               <img
                 src={client.logo}
-                alt={`${client.name} logo`}
+                alt={`${client.name} - QA testing and automation client`}
                 className="h-20 md:h-24 w-auto object-contain filter opacity-60 hover:opacity-100 transition-opacity duration-300"
+                loading="lazy"
               />
             </div>
           ))}

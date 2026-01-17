@@ -1,31 +1,19 @@
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Header from "../components/Header";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import SmoothScroll from "../components/SmoothScroll";
-import TestingPipeline from "../components/TestingPipeline";
 import HeroSection from "../components/home/HeroSection";
 import ServicesSection from "../components/home/ServicesSection";
 import QualityImpactSection from "../components/home/QualityImpactSection";
 import ClientExperienceSection from "../components/home/ClientExperienceSection";
-import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { trackServiceVisibility } from "../utils/visibilityTracking";
 
 const Index = () => {
-  // State to track which testing services are visible on screen
   const [visibleServices, setVisibleServices] = useState<number>(0);
-  const heroRef = useRef(null);
   
-  // Using enhanced intersection observer
-  const heroIsVisible = useIntersectionObserver({
-    ref: heroRef,
-    threshold: 0.3,
-    triggerOnce: true
-  });
-  
-  // Function to track visible services - will be attached to section visibility
   const handleServiceVisibility = (isVisible: boolean, serviceId: string) => {
     trackServiceVisibility(isVisible, serviceId, setVisibleServices);
   };
@@ -35,26 +23,21 @@ const Index = () => {
       <SmoothScroll />
       <Header />
       
-      {/* Testing Pipeline */}
-      <TestingPipeline activeStep={visibleServices} totalSteps={9} />
-      
       <main>
         {/* Hero Section */}
-        <div ref={heroRef}>
-          <HeroSection />
-        </div>
+        <HeroSection />
+        
+        {/* Social Proof - Right after hero */}
+        <ClientExperienceSection />
         
         {/* Services Section */}
         <ServicesSection onVisibilityChange={handleServiceVisibility} />
         
-        {/* Quality Impact Section */}
+        {/* Results/Stats Section */}
         <QualityImpactSection servicesUsed={visibleServices} />
         
         {/* Contact Section */}
         <Contact />
-        
-        {/* Client Experience Section */}
-        <ClientExperienceSection />
       </main>
       
       <Footer />

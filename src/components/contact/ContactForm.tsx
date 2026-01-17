@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { CalendarDays } from "lucide-react";
 import FormInput from "./FormInput";
-import TimeSelect from "./TimeSelect";
 import MessageTextarea from "./MessageTextarea";
 import SubmitButton from "./SubmitButton";
 import { FormState, initialFormState, handleFormSubmit } from "./formUtils";
@@ -26,46 +24,25 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid sm:grid-cols-2 gap-4">
-        <FormInput
-          id="name"
-          name="name"
-          type="text"
-          value={formState.name}
-          onChange={handleChange}
-          label="Name"
-          required
-        />
-        
-        <FormInput
-          id="email"
-          name="email"
-          type="email"
-          value={formState.email}
-          onChange={handleChange}
-          label="Email"
-          required
-        />
-      </div>
+      <FormInput
+        id="name"
+        name="name"
+        type="text"
+        value={formState.name}
+        onChange={handleChange}
+        label="Your Name"
+        required
+      />
       
-      <div className="grid sm:grid-cols-2 gap-4">
-        <FormInput
-          id="date"
-          name="date"
-          type="date"
-          value={formState.date}
-          onChange={handleChange}
-          label="Preferred Date"
-          required={false}
-          icon={<CalendarDays size={16} />}
-          min={new Date().toISOString().split('T')[0]}
-        />
-        
-        <TimeSelect 
-          value={formState.time}
-          onChange={handleChange}
-        />
-      </div>
+      <FormInput
+        id="email"
+        name="email"
+        type="email"
+        value={formState.email}
+        onChange={handleChange}
+        label="Work Email"
+        required
+      />
       
       <MessageTextarea
         value={formState.message}
@@ -76,6 +53,10 @@ const ContactForm = () => {
         isSubmitting={isSubmitting}
         isSubmitted={isSubmitted}
       />
+      
+      <p className="text-xs text-foreground/50 text-center">
+        We'll respond within 24 hours
+      </p>
     </form>
   );
 };

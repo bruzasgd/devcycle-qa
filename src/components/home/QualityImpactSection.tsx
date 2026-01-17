@@ -1,71 +1,69 @@
 
 import React from 'react';
-import { TrendingUp, Bug, Zap, Users } from "lucide-react";
-
-const stats = [
-  {
-    icon: TrendingUp,
-    value: "70%",
-    label: "Faster Testing",
-    description: "Reduce testing time with automation"
-  },
-  {
-    icon: Bug,
-    value: "85%",
-    label: "Fewer Bugs",
-    description: "Catch issues before production"
-  },
-  {
-    icon: Zap,
-    value: "3x",
-    label: "Faster Releases",
-    description: "Ship features confidently"
-  },
-  {
-    icon: Users,
-    value: "50+",
-    label: "Happy Clients",
-    description: "Enterprise teams served"
-  }
-];
+import QualityMeter from '../QualityMeter';
+import CrashTestLogo from '../CrashTestLogo';
+import { CheckIcon, XIcon, FileCheck, Clock } from "lucide-react";
 
 interface QualityImpactSectionProps {
   servicesUsed: number;
 }
 
-const QualityImpactSection: React.FC<QualityImpactSectionProps> = () => {
+const QualityImpactSection: React.FC<QualityImpactSectionProps> = ({ servicesUsed }) => {
   return (
-    <section className="py-16 bg-primary/5">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-semibold mb-4">
-            Results That Matter
-          </h2>
-          <p className="text-foreground/70 max-w-xl mx-auto">
-            Our clients see measurable improvements in their software quality.
+    <section className="py-14 bg-yellow-50/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10">
+          <div className="flex justify-center mb-4">
+            <CrashTestLogo size={40} />
+          </div>
+          <h2 className="text-3xl font-medium mb-4 reveal">Quality Impact</h2>
+          <p className="text-foreground/70 max-w-xl mx-auto reveal">
+            See how your software quality improves with each testing strategy.
           </p>
         </div>
         
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((stat) => (
-            <div 
-              key={stat.label}
-              className="bg-background rounded-xl p-6 text-center shadow-sm border border-border"
-            >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <stat.icon className="w-6 h-6 text-primary" />
+        <QualityMeter servicesUsed={servicesUsed} totalServices={9} />
+        
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 hover:shadow-md transition-all">
+            <div className="flex items-center mb-3">
+              <div className="mr-3 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+                <CheckIcon className="h-5 w-5 text-yellow-500" />
               </div>
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-1">
-                {stat.value}
-              </div>
-              <div className="font-medium text-foreground mb-1">
-                {stat.label}
-              </div>
-              <div className="text-sm text-foreground/60">
-                {stat.description}
-              </div>
+              <h3 className="font-medium">Higher Reliability</h3>
             </div>
-          ))}
+            <p className="text-sm text-foreground/70">Fewer bugs in production</p>
+          </div>
+          
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 hover:shadow-md transition-all">
+            <div className="flex items-center mb-3">
+              <div className="mr-3 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+                <XIcon className="h-5 w-5 text-yellow-500" />
+              </div>
+              <h3 className="font-medium">Fewer Regressions</h3>
+            </div>
+            <p className="text-sm text-foreground/70">Prevent old bugs from returning</p>
+          </div>
+          
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 hover:shadow-md transition-all">
+            <div className="flex items-center mb-3">
+              <div className="mr-3 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+                <FileCheck className="h-5 w-5 text-yellow-500" />
+              </div>
+              <h3 className="font-medium">Better UX</h3>
+            </div>
+            <p className="text-sm text-foreground/70">Consistent across all platforms</p>
+          </div>
+          
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-100 hover:shadow-md transition-all">
+            <div className="flex items-center mb-3">
+              <div className="mr-3 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+                <Clock className="h-5 w-5 text-yellow-500" />
+              </div>
+              <h3 className="font-medium">Faster Releases</h3>
+            </div>
+            <p className="text-sm text-foreground/70">Ship with confidence</p>
+          </div>
         </div>
       </div>
     </section>

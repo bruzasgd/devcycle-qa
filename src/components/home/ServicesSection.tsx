@@ -1,115 +1,132 @@
 
 import React from 'react';
-import { Zap, Bot, TestTube, Eye, Gauge, GitBranch } from 'lucide-react';
+import ServiceSection from '../ServiceSection';
+import CrashTestLogo from '../CrashTestLogo';
+import E2ETestingAnimation from '../animations/E2ETestingAnimation';
+import ScreenshotTestingAnimation from '../animations/ScreenshotTestingAnimation';
+import BackendTestingAnimation from '../animations/BackendTestingAnimation';
+import CICDAnimation from '../animations/CICDAnimation';
+import BestPracticesAnimation from '../animations/BestPracticesAnimation';
+import AITestGenerationAnimation from '../animations/AITestGenerationAnimation';
+import SmartAnalyticsAnimation from '../animations/SmartAnalyticsAnimation';
+import MigrationAutomationAnimation from '../animations/MigrationAutomationAnimation';
+import AIAgentMCPAnimation from '../animations/AIAgentMCPAnimation';
 
 interface ServicesSectionProps {
   onVisibilityChange: (isVisible: boolean, serviceId: string) => void;
 }
 
-const services = [
-  {
-    id: "service-1",
-    icon: Zap,
-    title: "Test Automation",
-    description: "Migrate from manual to automated testing with Playwright, Cypress & Selenium. Reduce testing time by 70%.",
-    highlight: "Most Popular"
-  },
-  {
-    id: "service-2",
-    icon: Bot,
-    title: "AI Testing Agents",
-    description: "Custom AI agents with GitHub, Jira & Slack integration for intelligent test orchestration.",
-    highlight: null
-  },
-  {
-    id: "service-3",
-    icon: TestTube,
-    title: "E2E Testing",
-    description: "BDD & ATDD testing with Given-When-Then scenarios. Complete user journey validation.",
-    highlight: null
-  },
-  {
-    id: "service-4",
-    icon: Eye,
-    title: "Visual Testing",
-    description: "AI-powered visual regression testing across browsers, devices, and screen sizes.",
-    highlight: null
-  },
-  {
-    id: "service-5",
-    icon: Gauge,
-    title: "Performance Testing",
-    description: "Load testing, stress testing & scalability analysis with actionable optimization insights.",
-    highlight: null
-  },
-  {
-    id: "service-6",
-    icon: GitBranch,
-    title: "CI/CD Integration",
-    description: "Automated testing pipelines for Jenkins, GitHub Actions, GitLab CI & Azure DevOps.",
-    highlight: null
-  }
-];
-
 const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange }) => {
-  // Trigger visibility for all services on mount for the quality meter
-  React.useEffect(() => {
-    services.forEach((_, index) => {
-      setTimeout(() => {
-        onVisibilityChange(true, `service-${index + 1}`);
-      }, index * 100);
-    });
-  }, [onVisibilityChange]);
-
   return (
-    <section id="services" className="py-16 sm:py-20 bg-secondary/30" aria-labelledby="services-heading">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Our Services
+    <section id="services" className="py-6 sm:py-8" aria-labelledby="services-heading">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
+        <div className="inline-flex items-center justify-center mb-4 reveal">
+          <CrashTestLogo size={30} className="mr-2" aria-hidden="true" />
+          <div className="chip bg-yellow-100 text-yellow-800 border-yellow-200">
+            <span>Our Services</span>
           </div>
-          <h2 id="services-heading" className="text-3xl sm:text-4xl font-semibold mb-4">
-            Complete QA Solutions
-          </h2>
-          <p className="text-foreground/70 max-w-xl mx-auto">
-            Everything you need to ship high-quality software with confidence.
-          </p>
         </div>
-        
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <div 
-              key={service.id}
-              className="group relative bg-background rounded-xl p-6 shadow-sm border border-border hover:shadow-lg hover:border-primary/30 transition-all duration-300"
-            >
-              {service.highlight && (
-                <div className="absolute -top-3 left-4 px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-full">
-                  {service.highlight}
-                </div>
-              )}
-              
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <service.icon className="w-6 h-6 text-primary" />
-              </div>
-              
-              <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-              <p className="text-foreground/70 text-sm leading-relaxed">{service.description}</p>
-            </div>
-          ))}
-        </div>
-        
-        <div className="text-center mt-10">
-          <a 
-            href="#contact" 
-            className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
-          >
-            Discuss your QA needs
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
-        </div>
+        <h2 id="services-heading" className="text-3xl sm:text-4xl font-medium mb-4 reveal">
+          Complete QA Solutions
+        </h2>
+        <p className="text-foreground/70 max-w-2xl mx-auto reveal">
+          From manual to automated testing—everything you need to ship quality software.
+        </p>
       </div>
+      
+      <ServiceSection
+        id="service-1"
+        title="Manual to Automation Migration"
+        description="Transition from manual to automated testing with Playwright, Cypress, or Selenium. Cut testing time by 70%."
+        label="Automation Migration"
+        animationElement={<MigrationAutomationAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-2"
+        title="AI Testing Agents"
+        description="Custom AI agents integrated with GitHub, Jira, Slack for intelligent test orchestration and automated decision-making."
+        label="AI Agents"
+        isReversed={true}
+        animationElement={<AIAgentMCPAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-3"
+        title="AI Test Generation"
+        description="Auto-generate test cases from requirements using AI, combined with manual testing for edge cases."
+        label="Smart Testing"
+        animationElement={<AITestGenerationAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-4"
+        title="E2E Testing (BDD/ATDD)"
+        description="Given-When-Then scenarios for complete user journey validation. Catch integration issues early."
+        label="E2E Testing"
+        isReversed={true}
+        animationElement={<E2ETestingAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-5"
+        title="Visual Regression Testing"
+        description="AI-powered visual testing across browsers and devices. Detect meaningful UI changes automatically."
+        label="Visual Testing"
+        animationElement={<ScreenshotTestingAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-6"
+        title="Performance & Load Testing"
+        description="Stress test your APIs and apps. Identify bottlenecks and optimize for peak traffic."
+        label="Performance"
+        isReversed={true}
+        animationElement={<BackendTestingAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-7"
+        title="CI/CD Integration"
+        description="Automated testing in your pipeline. Supports Jenkins, GitHub Actions, GitLab CI, Azure DevOps."
+        label="CI/CD"
+        animationElement={<CICDAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-8"
+        title="QA Strategy & Best Practices"
+        description="Definition of Ready/Done, Agile workflows, test planning, and continuous improvement."
+        label="QA Strategy"
+        isReversed={true}
+        animationElement={<BestPracticesAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
+      
+      <ServiceSection
+        id="service-9"
+        title="Test Analytics & Reporting"
+        description="Transform test data into insights. Predict defects, track trends, optimize coverage."
+        label="Analytics"
+        animationElement={<SmartAnalyticsAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-6"
+      />
     </section>
   );
 };

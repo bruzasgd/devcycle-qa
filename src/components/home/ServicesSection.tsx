@@ -27,18 +27,18 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
           </div>
         </div>
         <h2 id="services-heading" className="text-3xl sm:text-4xl font-medium mb-4 reveal">
-          Complete QA Solutions
+          QA Optimization Stack
         </h2>
         <p className="text-foreground/70 max-w-2xl mx-auto reveal">
-          From manual to automated testing—everything you need to ship quality software.
+          Strategic automation and process refinement that scales quality, not headcount.
         </p>
       </div>
       
       <ServiceSection
         id="service-1"
-        title="Manual to Automation Migration"
-        description="Transition from manual to automated testing with Playwright, Cypress, or Selenium. Cut testing time by 70%."
-        label="Automation Migration"
+        title="Automation Migration"
+        description="Convert manual test suites to automated pipelines. Reduce execution time by 70%."
+        label="Automation"
         animationElement={<MigrationAutomationAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-6"
@@ -46,8 +46,8 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-2"
-        title="AI Testing Agents"
-        description="Custom AI agents integrated with GitHub, Jira, Slack for intelligent test orchestration and automated decision-making."
+        title="AI-Powered Test Orchestration"
+        description="Intelligent agents that prioritize, schedule, and execute tests based on code changes."
         label="AI Agents"
         isReversed={true}
         animationElement={<AIAgentMCPAnimation />}
@@ -57,9 +57,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-3"
-        title="AI Test Generation"
-        description="Auto-generate test cases from requirements using AI, combined with manual testing for edge cases."
-        label="Smart Testing"
+        title="Smart Test Generation"
+        description="Auto-generate test cases from specs. Maximize coverage with minimal maintenance."
+        label="AI Testing"
         animationElement={<AITestGenerationAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-6"
@@ -67,9 +67,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-4"
-        title="E2E Testing (BDD/ATDD)"
-        description="Given-When-Then scenarios for complete user journey validation. Catch integration issues early."
-        label="E2E Testing"
+        title="E2E Testing Framework"
+        description="BDD/ATDD scenarios that validate complete user journeys automatically."
+        label="E2E"
         isReversed={true}
         animationElement={<E2ETestingAnimation />}
         onVisibilityChange={onVisibilityChange}
@@ -78,9 +78,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-5"
-        title="Visual Regression Testing"
-        description="AI-powered visual testing across browsers and devices. Detect meaningful UI changes automatically."
-        label="Visual Testing"
+        title="Visual Regression Detection"
+        description="Automated cross-browser visual validation. Catch UI drift before users do."
+        label="Visual QA"
         animationElement={<ScreenshotTestingAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-6"
@@ -88,8 +88,8 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-6"
-        title="Performance & Load Testing"
-        description="Stress test your APIs and apps. Identify bottlenecks and optimize for peak traffic."
+        title="Performance Benchmarking"
+        description="Load testing and bottleneck identification. Ensure reliability at scale."
         label="Performance"
         isReversed={true}
         animationElement={<BackendTestingAnimation />}
@@ -99,8 +99,8 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-7"
-        title="CI/CD Integration"
-        description="Automated testing in your pipeline. Supports Jenkins, GitHub Actions, GitLab CI, Azure DevOps."
+        title="Pipeline Integration"
+        description="Embed quality gates into CI/CD. Automated feedback on every commit."
         label="CI/CD"
         animationElement={<CICDAnimation />}
         onVisibilityChange={onVisibilityChange}
@@ -109,9 +109,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-8"
-        title="QA Strategy & Best Practices"
-        description="Definition of Ready/Done, Agile workflows, test planning, and continuous improvement."
-        label="QA Strategy"
+        title="Process Optimization"
+        description="Streamlined workflows, quality metrics, and continuous improvement systems."
+        label="Strategy"
         isReversed={true}
         animationElement={<BestPracticesAnimation />}
         onVisibilityChange={onVisibilityChange}
@@ -120,8 +120,8 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       <ServiceSection
         id="service-9"
-        title="Test Analytics & Reporting"
-        description="Transform test data into insights. Predict defects, track trends, optimize coverage."
+        title="Quality Analytics"
+        description="Actionable insights from test data. Predict failures, optimize coverage."
         label="Analytics"
         animationElement={<SmartAnalyticsAnimation />}
         onVisibilityChange={onVisibilityChange}

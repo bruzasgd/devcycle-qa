@@ -7,12 +7,12 @@ const Contact = () => {
     <section id="contact" className="py-16 sm:py-20 bg-secondary/50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-10 reveal">
-          <div className="chip inline-block mb-4">Let's Connect</div>
+          <div className="chip inline-block mb-4">Get Started</div>
           <h2 className="text-3xl sm:text-4xl font-medium mb-4">
-            Book a Free Consultation
+            Optimize Your QA
           </h2>
           <p className="text-foreground/70 text-lg">
-            Discuss how we can improve your software quality.
+            Scale quality, not headcount.
           </p>
         </div>
         

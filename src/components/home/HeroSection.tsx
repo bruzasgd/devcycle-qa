@@ -19,10 +19,10 @@ const HeroSection = () => {
             <CrashTestLogo size={80} aria-hidden="true" />
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight animate-fade-in">
-            QA Testing & Automation Services
+            Smarter QA. Fewer Resources.
           </h1>
           <p className="mt-6 text-xl text-foreground/70 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            Reduce bugs by 70%. Ship faster with AI-powered test automation.
+            Optimize your testing pipeline. Ship quality software with less overhead.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center" style={{ animationDelay: "0.2s" }}>
             <a 

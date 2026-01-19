@@ -11,7 +11,7 @@ const Footer = () => {
           <div>
             <h2 className="text-2xl font-semibold mb-2">DevCycleQA</h2>
             <p className="text-white/70 max-w-md">
-              Elevating software quality through comprehensive QA solutions and testing excellence.
+              QA optimization systems that deliver higher quality with fewer resources.
             </p>
           </div>
           

@@ -16,9 +16,9 @@ const QualityImpactSection: React.FC<QualityImpactSectionProps> = ({ servicesUse
           <div className="flex justify-center mb-4">
             <CrashTestLogo size={40} />
           </div>
-          <h2 className="text-3xl font-medium mb-4 reveal">Quality Impact</h2>
+          <h2 className="text-3xl font-medium mb-4 reveal">Measurable Results</h2>
           <p className="text-foreground/70 max-w-xl mx-auto reveal">
-            See how your software quality improves with each testing strategy.
+            Optimized QA processes deliver compounding efficiency gains.
           </p>
         </div>
         

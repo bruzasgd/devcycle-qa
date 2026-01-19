@@ -18,53 +18,57 @@ interface ServicesSectionProps {
 
 const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange }) => {
   return (
-    <section id="services" className="py-6 sm:py-8" aria-labelledby="services-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
-        <div className="inline-flex items-center justify-center mb-4 reveal">
-          <CrashTestLogo size={30} className="mr-2" aria-hidden="true" />
-          <div className="chip bg-yellow-100 text-yellow-800 border-yellow-200">
+    <section id="services" className="py-8 sm:py-12" aria-labelledby="services-heading">
+      <div className="max-w-5xl mx-auto px-8 sm:px-12 lg:px-20 text-center mb-8">
+        <div className="inline-flex items-center justify-center mb-3 reveal">
+          <CrashTestLogo size={24} className="mr-2" aria-hidden="true" />
+          <div className="chip bg-yellow-100 text-yellow-800 border-yellow-200 text-xs">
             <span>Our Services</span>
           </div>
         </div>
-        <h2 id="services-heading" className="text-3xl sm:text-4xl font-medium mb-4 reveal">
+        <h2 id="services-heading" className="text-2xl sm:text-3xl font-medium mb-3 reveal">
           QA Optimization Stack
         </h2>
-        <p className="text-foreground/70 max-w-2xl mx-auto reveal">
+        <p className="text-foreground/60 max-w-xl mx-auto text-sm reveal">
           Strategic automation and process refinement that scales quality, not headcount.
         </p>
       </div>
       
+      {/* 1. AI-Powered Test Orchestration - Most trending */}
       <ServiceSection
         id="service-1"
-        title="Automation Migration"
-        description="Convert manual test suites to automated pipelines. Reduce execution time by 70%."
-        label="Automation"
-        animationElement={<MigrationAutomationAnimation />}
-        onVisibilityChange={onVisibilityChange}
-        className="py-6"
-      />
-      
-      <ServiceSection
-        id="service-2"
         title="AI-Powered Test Orchestration"
         description="Intelligent agents that prioritize, schedule, and execute tests based on code changes."
         label="AI Agents"
-        isReversed={true}
         animationElement={<AIAgentMCPAnimation />}
         onVisibilityChange={onVisibilityChange}
-        className="py-6"
+        className="py-4"
       />
       
+      {/* 2. Smart Test Generation - AI trend continues */}
       <ServiceSection
-        id="service-3"
+        id="service-2"
         title="Smart Test Generation"
         description="Auto-generate test cases from specs. Maximize coverage with minimal maintenance."
         label="AI Testing"
+        isReversed={true}
         animationElement={<AITestGenerationAnimation />}
         onVisibilityChange={onVisibilityChange}
-        className="py-6"
+        className="py-4"
       />
       
+      {/* 3. CI/CD Integration - Shift-left testing trend */}
+      <ServiceSection
+        id="service-3"
+        title="Pipeline Integration"
+        description="Embed quality gates into CI/CD. Automated feedback on every commit."
+        label="CI/CD"
+        animationElement={<CICDAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-4"
+      />
+      
+      {/* 4. E2E Testing Framework */}
       <ServiceSection
         id="service-4"
         title="E2E Testing Framework"
@@ -73,9 +77,10 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
         isReversed={true}
         animationElement={<E2ETestingAnimation />}
         onVisibilityChange={onVisibilityChange}
-        className="py-6"
+        className="py-4"
       />
       
+      {/* 5. Visual Regression Detection */}
       <ServiceSection
         id="service-5"
         title="Visual Regression Detection"
@@ -83,49 +88,53 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
         label="Visual QA"
         animationElement={<ScreenshotTestingAnimation />}
         onVisibilityChange={onVisibilityChange}
-        className="py-6"
+        className="py-4"
       />
       
+      {/* 6. Quality Analytics */}
       <ServiceSection
         id="service-6"
-        title="Performance Benchmarking"
-        description="Load testing and bottleneck identification. Ensure reliability at scale."
-        label="Performance"
-        isReversed={true}
-        animationElement={<BackendTestingAnimation />}
-        onVisibilityChange={onVisibilityChange}
-        className="py-6"
-      />
-      
-      <ServiceSection
-        id="service-7"
-        title="Pipeline Integration"
-        description="Embed quality gates into CI/CD. Automated feedback on every commit."
-        label="CI/CD"
-        animationElement={<CICDAnimation />}
-        onVisibilityChange={onVisibilityChange}
-        className="py-6"
-      />
-      
-      <ServiceSection
-        id="service-8"
-        title="Process Optimization"
-        description="Streamlined workflows, quality metrics, and continuous improvement systems."
-        label="Strategy"
-        isReversed={true}
-        animationElement={<BestPracticesAnimation />}
-        onVisibilityChange={onVisibilityChange}
-        className="py-6"
-      />
-      
-      <ServiceSection
-        id="service-9"
         title="Quality Analytics"
         description="Actionable insights from test data. Predict failures, optimize coverage."
         label="Analytics"
+        isReversed={true}
         animationElement={<SmartAnalyticsAnimation />}
         onVisibilityChange={onVisibilityChange}
-        className="py-6"
+        className="py-4"
+      />
+      
+      {/* 7. Performance Benchmarking */}
+      <ServiceSection
+        id="service-7"
+        title="Performance Benchmarking"
+        description="Load testing and bottleneck identification. Ensure reliability at scale."
+        label="Performance"
+        animationElement={<BackendTestingAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-4"
+      />
+      
+      {/* 8. Automation Migration */}
+      <ServiceSection
+        id="service-8"
+        title="Automation Migration"
+        description="Convert manual test suites to automated pipelines. Reduce execution time by 70%."
+        label="Automation"
+        isReversed={true}
+        animationElement={<MigrationAutomationAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-4"
+      />
+      
+      {/* 9. Process Optimization */}
+      <ServiceSection
+        id="service-9"
+        title="Process Optimization"
+        description="Streamlined workflows, quality metrics, and continuous improvement systems."
+        label="Strategy"
+        animationElement={<BestPracticesAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-4"
       />
     </section>
   );

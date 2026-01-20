@@ -18,25 +18,69 @@ const HeroSection = () => {
           <div className="flex justify-center mb-4 animate-fade-in">
             <CrashTestLogo size={80} aria-hidden="true" />
           </div>
+          
+          {/* Trust signal chip */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-100 border border-yellow-200 text-yellow-800 text-sm mb-6 animate-fade-in">
+            <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>
+            Trusted by Enterprise Teams Worldwide
+          </div>
+          
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight animate-fade-in">
-            Smarter QA. Fewer Resources.
+            AI-Driven Quality Engineering
           </h1>
-          <p className="mt-6 text-xl text-foreground/70 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            Optimize your testing pipeline. Ship quality software with less overhead.
+          <p className="mt-6 text-xl text-foreground/70 animate-fade-in max-w-3xl mx-auto" style={{ animationDelay: "0.1s" }}>
+            Autonomous QA agents, generative test automation, and CI/CD quality gates that accelerate releases by up to 60% while reducing regression risk.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center" style={{ animationDelay: "0.2s" }}>
-            <a 
-              href="#services" 
-              className="px-8 py-3 rounded-full bg-yellow-500 text-white shadow-sm hover:shadow-md transition-all hover:scale-105"
-            >
-              Explore Services
-            </a>
+          
+          {/* Key benefits */}
+          <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-foreground/60 animate-fade-in" style={{ animationDelay: "0.15s" }}>
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+              Self-Healing Automation
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+              Shift-Left Testing
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+              Predictive Analytics
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+              Cloud-Scale QA
+            </span>
+          </div>
+          
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
             <a 
               href="#contact" 
+              className="px-8 py-3 rounded-full bg-yellow-500 text-white shadow-sm hover:shadow-md transition-all hover:scale-105 font-medium"
+            >
+              Book a QA Strategy Session
+            </a>
+            <a 
+              href="#services" 
               className="px-8 py-3 rounded-full bg-white border border-gray-200 text-yellow-600 shadow-sm hover:shadow-md transition-all hover:scale-105"
             >
-              Get Free Consultation
+              See AI Testing in Action
             </a>
+          </div>
+          
+          {/* Stats */}
+          <div className="mt-12 grid grid-cols-3 gap-6 max-w-lg mx-auto animate-fade-in" style={{ animationDelay: "0.25s" }}>
+            <div className="text-center">
+              <div className="text-2xl font-semibold text-primary">60%</div>
+              <div className="text-xs text-foreground/60">Faster Releases</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-semibold text-primary">85%</div>
+              <div className="text-xs text-foreground/60">Less Regression</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-semibold text-primary">3x</div>
+              <div className="text-xs text-foreground/60">Coverage Increase</div>
+            </div>
           </div>
         </div>
       </div>

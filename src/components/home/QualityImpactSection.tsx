@@ -21,7 +21,7 @@ const QualityImpactSection: React.FC<QualityImpactSectionProps> = ({ servicesUse
         </div>
         
         <div className="flex justify-center mb-10 reveal">
-          <QualityMeter servicesUsed={servicesUsed} totalServices={11} />
+          <QualityMeter servicesUsed={servicesUsed} totalServices={10} />
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">

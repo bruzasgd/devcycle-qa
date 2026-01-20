@@ -32,7 +32,7 @@ const Index = () => {
       <SmoothScroll />
       <Header />
       
-      <TestingPipeline activeStep={visibleServices} totalSteps={9} />
+      <TestingPipeline activeStep={visibleServices} totalSteps={11} />
       
       <main>
         <div ref={heroRef}>

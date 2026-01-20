@@ -11,6 +11,8 @@ import AITestGenerationAnimation from '../animations/AITestGenerationAnimation';
 import SmartAnalyticsAnimation from '../animations/SmartAnalyticsAnimation';
 import MigrationAutomationAnimation from '../animations/MigrationAutomationAnimation';
 import AIAgentMCPAnimation from '../animations/AIAgentMCPAnimation';
+import QAOpsAnimation from '../animations/QAOpsAnimation';
+import ManagedQAAnimation from '../animations/ManagedQAAnimation';
 
 interface ServicesSectionProps {
   onVisibilityChange: (isVisible: boolean, serviceId: string) => void;
@@ -23,46 +25,46 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
         <div className="inline-flex items-center justify-center mb-3 reveal">
           <CrashTestLogo size={24} className="mr-2" aria-hidden="true" />
           <div className="chip bg-yellow-100 text-yellow-800 border-yellow-200 text-xs">
-            <span>Our Services</span>
+            <span>Quality Engineering Services</span>
           </div>
         </div>
         <h2 id="services-heading" className="text-2xl sm:text-3xl font-medium mb-3 reveal">
           QA Optimization Stack
         </h2>
-        <p className="text-foreground/60 max-w-xl mx-auto text-sm reveal">
-          Strategic automation and process refinement that scales quality, not headcount.
+        <p className="text-foreground/60 max-w-2xl mx-auto text-sm reveal">
+          Strategic QA consulting and engineering foundations that scale agile and DevOps pipelines with autonomous testing, predictive analytics, and operational QA metrics—aligned with uptime, user experience, and release velocity goals.
         </p>
       </div>
       
-      {/* 1. AI-Powered Test Orchestration - Most trending */}
+      {/* 1. AI-Powered Test Orchestration */}
       <ServiceSection
-        id="service-1"
-        title="AI-Powered Test Orchestration"
-        description="Intelligent agents that prioritize, schedule, and execute tests based on code changes."
+        id="ai-agents"
+        title="AI Agents – Intelligent Test Orchestration"
+        description="Autonomous QA agents leverage code context and change analysis to dynamically select and execute relevant tests at scale. These intelligent orchestrators optimize test runtimes through parallel execution and smart prioritization, feeding actionable insights back to DevOps teams for continuous pipeline refinement."
         label="AI Agents"
         animationElement={<AIAgentMCPAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-4"
       />
       
-      {/* 2. Smart Test Generation - AI trend continues */}
+      {/* 2. Smart Test Generation */}
       <ServiceSection
-        id="service-2"
-        title="Smart Test Generation"
-        description="Auto-generate test cases from specs. Maximize coverage with minimal maintenance."
-        label="AI Testing"
+        id="ai-testing"
+        title="AI Testing – Smart Test Generation"
+        description="Generative AI transforms specifications, user stories, and production telemetry into comprehensive test suites—including edge cases and risk-based prioritization. Self-healing frameworks automatically adapt to UI and API changes, eliminating brittle tests and reducing maintenance overhead by up to 70%."
+        label="Generative AI"
         isReversed={true}
         animationElement={<AITestGenerationAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-4"
       />
       
-      {/* 3. CI/CD Integration - Shift-left testing trend */}
+      {/* 3. CI/CD Integration */}
       <ServiceSection
-        id="service-3"
-        title="Pipeline Integration"
-        description="Embed quality gates into CI/CD. Automated feedback on every commit."
-        label="CI/CD"
+        id="cicd-integration"
+        title="CI/CD Pipeline Integration"
+        description="Quality gates integrate seamlessly into CI/CD workflows, enforcing automated checks at every commit. Real-time feedback loops prevent regression leakage into production, while progressive testing across development, staging, and production environments ensures confidence at each deployment stage."
+        label="Quality Gates"
         animationElement={<CICDAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-4"
@@ -70,22 +72,22 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       {/* 4. E2E Testing Framework */}
       <ServiceSection
-        id="service-4"
-        title="E2E Testing Framework"
-        description="BDD/ATDD scenarios that validate complete user journeys automatically."
-        label="E2E"
+        id="e2e-testing"
+        title="E2E Testing Framework (Cypress, Playwright)"
+        description="Behavior-driven (BDD/ATDD) executable specifications validate complete user journeys with Given-When-Then scenarios. Real-device and cloud testing infrastructure ensures coverage across web, mobile, and hybrid applications on actual devices and browser configurations."
+        label="Cross-Platform"
         isReversed={true}
         animationElement={<E2ETestingAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-4"
       />
       
-      {/* 5. Visual Regression Detection */}
+      {/* 5. Visual QA */}
       <ServiceSection
-        id="service-5"
-        title="Visual Regression Detection"
-        description="Automated cross-browser visual validation. Catch UI drift before users do."
-        label="Visual QA"
+        id="visual-qa"
+        title="Visual QA – Visual Regression Detection"
+        description="AI-assisted visual comparison combines pixel-perfect and semantic change detection to catch UI drift before users do. Cross-browser validation across real devices ensures UX consistency, while intelligent diffing filters noise and highlights meaningful visual regressions."
+        label="Visual AI"
         animationElement={<ScreenshotTestingAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-4"
@@ -93,10 +95,10 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       {/* 6. Quality Analytics */}
       <ServiceSection
-        id="service-6"
-        title="Quality Analytics"
-        description="Actionable insights from test data. Predict failures, optimize coverage."
-        label="Analytics"
+        id="quality-analytics"
+        title="Quality Analytics & Risk Insights"
+        description="Dashboards deliver actionable intelligence: flake detection, slow test identification, coverage trends, and root cause forecasting. Predictive analytics and reliability scores drive smarter decisions, enabling teams to focus effort where it impacts quality most."
+        label="Predictive Analytics"
         isReversed={true}
         animationElement={<SmartAnalyticsAnimation />}
         onVisibilityChange={onVisibilityChange}
@@ -105,10 +107,10 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       {/* 7. Performance Benchmarking */}
       <ServiceSection
-        id="service-7"
-        title="Performance Benchmarking"
-        description="Load testing and bottleneck identification. Ensure reliability at scale."
-        label="Performance"
+        id="performance-qa"
+        title="Performance & Resilience Engineering"
+        description="Load, stress, and chaos testing with predictive bottleneck analysis ensures scalable, reliable performance under real-world conditions. API and microservices QA validates distributed system resilience, identifying failure points before they impact production users."
+        label="Resilience"
         animationElement={<BackendTestingAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-4"
@@ -116,23 +118,46 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
       
       {/* 8. Automation Migration */}
       <ServiceSection
-        id="service-8"
-        title="Automation Migration"
-        description="Convert manual test suites to automated pipelines. Reduce execution time by 70%."
-        label="Automation"
+        id="automation-migration"
+        title="Automation Migration & Low-Code Platforms"
+        description="Convert legacy manual test suites into modern automation pipelines using low-code/no-code tools and hybrid scripting approaches. Boost throughput with reduced maintenance overhead, enabling broader team participation in quality engineering without deep coding expertise."
+        label="Low-Code"
         isReversed={true}
         animationElement={<MigrationAutomationAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-4"
       />
       
-      {/* 9. Process Optimization */}
+      {/* 9. QAOps / TestOps */}
       <ServiceSection
-        id="service-9"
-        title="Process Optimization"
-        description="Streamlined workflows, quality metrics, and continuous improvement systems."
-        label="Strategy"
+        id="qaops"
+        title="Process & Strategy Optimization (QAOps/TestOps)"
+        description="Strategic frameworks align QA with DevOps, SRE, and security practices. Enable shift-left and shift-right testing, observability workflows, and operational quality engineering that treats testing as a continuous, integrated discipline rather than a phase."
+        label="TestOps"
+        animationElement={<QAOpsAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-4"
+      />
+      
+      {/* 10. Best Practices & Strategy */}
+      <ServiceSection
+        id="qa-strategy"
+        title="Security & Compliance Automation"
+        description="Integrate security testing into CI/CD pipelines with automated vulnerability scanning, OWASP compliance checks, and API security validation. Shift security left to catch issues early while maintaining audit trails and compliance documentation."
+        label="Security"
+        isReversed={true}
         animationElement={<BestPracticesAnimation />}
+        onVisibilityChange={onVisibilityChange}
+        className="py-4"
+      />
+      
+      {/* 11. Managed QA Services */}
+      <ServiceSection
+        id="managed-qa"
+        title="Managed QA Services & On-Demand Support"
+        description="End-to-end managed QA offerings—from strategy to execution—delivering flexible outcomes without heavy internal hiring or tooling overhead. Fully outsourced QAOps/TestOps with dedicated teams that scale with your release cadence and business needs."
+        label="Managed Services"
+        animationElement={<ManagedQAAnimation />}
         onVisibilityChange={onVisibilityChange}
         className="py-4"
       />

@@ -11,7 +11,7 @@ import AITestGenerationAnimation from '../animations/AITestGenerationAnimation';
 import SmartAnalyticsAnimation from '../animations/SmartAnalyticsAnimation';
 import MigrationAutomationAnimation from '../animations/MigrationAutomationAnimation';
 import AIAgentMCPAnimation from '../animations/AIAgentMCPAnimation';
-import QAOpsAnimation from '../animations/QAOpsAnimation';
+
 import ManagedQAAnimation from '../animations/ManagedQAAnimation';
 
 interface ServicesSectionProps {
@@ -128,18 +128,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
         className="py-4"
       />
       
-      {/* 9. QAOps / TestOps */}
-      <ServiceSection
-        id="qaops"
-        title="Process & Strategy Optimization (QAOps/TestOps)"
-        description="Strategic frameworks align QA with DevOps, SRE, and security practices. Enable shift-left and shift-right testing, observability workflows, and operational quality engineering that treats testing as a continuous, integrated discipline rather than a phase."
-        label="TestOps"
-        animationElement={<QAOpsAnimation />}
-        onVisibilityChange={onVisibilityChange}
-        className="py-4"
-      />
-      
-      {/* 10. Best Practices & Strategy */}
+      {/* 9. Best Practices & Strategy */}
       <ServiceSection
         id="qa-strategy"
         title="Security & Compliance Automation"

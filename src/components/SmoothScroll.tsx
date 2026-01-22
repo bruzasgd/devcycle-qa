@@ -8,10 +8,10 @@ import { useEffect } from "react";
 const SmoothScroll = () => {
   useEffect(() => {
     // Smooth scroll to anchor links with subtle experience
-    const handleAnchorClick = function(e) {
+    const handleAnchorClick = function(this: HTMLAnchorElement, e: Event) {
       e.preventDefault();
       const targetId = this.getAttribute('href');
-      if (targetId === "#") return;
+      if (!targetId || targetId === "#") return;
       
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
@@ -32,8 +32,9 @@ const SmoothScroll = () => {
     };
 
     // Add event listeners to all anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', handleAnchorClick);
+    const anchors = document.querySelectorAll('a[href^="#"]');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', handleAnchorClick as EventListener);
     });
 
     // Intersection Observer for reveal animations
@@ -159,8 +160,8 @@ const SmoothScroll = () => {
     // Clean up function
     return () => {
       // Remove event listeners from anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', handleAnchorClick);
+      anchors.forEach(anchor => {
+        anchor.removeEventListener('click', handleAnchorClick as EventListener);
       });
       
       // Disconnect intersection observer

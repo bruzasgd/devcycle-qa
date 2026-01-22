@@ -8,33 +8,44 @@ import { useEffect } from "react";
 const SmoothScroll = () => {
   useEffect(() => {
     // Smooth scroll to anchor links with subtle experience
-    const handleAnchorClick = function(this: HTMLAnchorElement, e: Event) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
+    const handleAnchorClick: EventListener = (e) => {
+      const event = e as MouseEvent;
+      const anchor = event.currentTarget as HTMLAnchorElement | null;
+      if (!anchor) return;
+
+      const targetId = anchor.getAttribute("href");
       if (!targetId || targetId === "#") return;
-      
+
       const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        // Add a very subtle highlight effect to the target element
-        targetElement.classList.add('gentle-pulse');
-        
-        // Smooth scroll with enhanced behavior
-        window.scrollTo({
-          top: targetElement.getBoundingClientRect().top + window.scrollY - 100,
-          behavior: 'smooth'
-        });
-        
-        // Remove pulse effect after animation completes
-        setTimeout(() => {
-          targetElement.classList.remove('gentle-pulse');
-        }, 1500);
-      }
+      if (!targetElement) return; // allow default behavior if target is missing
+
+      // We handle the scroll manually.
+      event.preventDefault();
+
+      // Update the URL hash for expected behavior (copy/paste/share).
+      history.replaceState(null, "", targetId);
+
+      // Add a very subtle highlight effect to the target element
+      targetElement.classList.add("gentle-pulse");
+
+      // Robust scrolling (works even if the scroll container changes)
+      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // Offset for fixed header
+      window.setTimeout(() => {
+        window.scrollBy({ top: -100, behavior: "smooth" });
+      }, 0);
+
+      // Remove pulse effect after animation completes
+      setTimeout(() => {
+        targetElement.classList.remove("gentle-pulse");
+      }, 1500);
     };
 
     // Add event listeners to all anchor links
     const anchors = document.querySelectorAll('a[href^="#"]');
     anchors.forEach(anchor => {
-      anchor.addEventListener('click', handleAnchorClick as EventListener);
+      anchor.addEventListener('click', handleAnchorClick);
     });
 
     // Intersection Observer for reveal animations
@@ -161,7 +172,7 @@ const SmoothScroll = () => {
     return () => {
       // Remove event listeners from anchor links
       anchors.forEach(anchor => {
-        anchor.removeEventListener('click', handleAnchorClick as EventListener);
+        anchor.removeEventListener('click', handleAnchorClick);
       });
       
       // Disconnect intersection observer

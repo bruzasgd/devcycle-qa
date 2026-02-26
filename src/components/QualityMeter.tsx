@@ -8,53 +8,40 @@ interface QualityMeterProps {
 }
 
 const QualityMeter: React.FC<QualityMeterProps> = ({ servicesUsed, totalServices }) => {
-  // Calculate percentage of services being used
   const percentage = (servicesUsed / totalServices) * 100;
-  
-  // Calculate quality metrics based on percentage of services used
   const stabilityScore = calculateQualityScore(percentage, qualityIndicators.stability);
   const speedScore = calculateQualityScore(percentage, qualityIndicators.speed);
   const reliabilityScore = calculateQualityScore(percentage, qualityIndicators.reliability);
   
+  // CLI-style progress bar
+  const filledBlocks = Math.round((servicesUsed / totalServices) * 20);
+  const emptyBlocks = 20 - filledBlocks;
+  const progressBar = "█".repeat(filledBlocks) + "░".repeat(emptyBlocks);
+  
   return (
     <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="text-center mb-6">
-        <h3 className="text-xl sm:text-2xl font-medium mb-2">Testing Impact on Software Quality</h3>
-        <p className="text-foreground/70">
-          As more testing services are utilized, software quality metrics improve significantly
+        <h3 className="text-xl sm:text-2xl font-mono font-medium mb-2 text-foreground">
+          <span className="text-primary/40">&gt; </span>testing_impact.analyze()
+        </h3>
+        <p className="text-muted-foreground font-mono text-sm">
+          // As more testing services are utilized, software quality metrics improve
         </p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <QualityIndicator 
-          title="Stability" 
-          percentage={stabilityScore} 
-          color="blue" 
-          description="Fewer crashes & bugs"
-        />
-        <QualityIndicator 
-          title="Performance" 
-          percentage={speedScore} 
-          color="green"
-          description="Faster response times"
-        />
-        <QualityIndicator 
-          title="Reliability" 
-          percentage={reliabilityScore} 
-          color="yellow"
-          description="Consistent behavior"
-        />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <QualityIndicator title="stability" percentage={stabilityScore} color="primary" description="Fewer crashes & bugs" />
+        <QualityIndicator title="performance" percentage={speedScore} color="accent" description="Faster response times" />
+        <QualityIndicator title="reliability" percentage={reliabilityScore} color="amber" description="Consistent behavior" />
       </div>
       
       <div className="mt-8 flex flex-col items-center">
-        <div className="w-full max-w-md bg-gray-100 h-2 rounded-full overflow-hidden">
-          <div 
-            className="h-full bg-yellow-500 rounded-full transition-all duration-1000 ease-out"
-            style={{ width: `${percentage}%` }}
-          ></div>
+        <div className="font-mono text-sm text-primary tracking-wider">
+          [{progressBar}]
         </div>
-        <div className="mt-2 text-sm text-foreground/70">
-          <span className="font-medium">{servicesUsed} of {totalServices}</span> testing services active
+        <div className="mt-2 text-sm text-muted-foreground font-mono">
+          <span className="text-primary">{servicesUsed}</span>
+          <span className="text-muted-foreground">/{totalServices}</span> services_active
         </div>
       </div>
     </div>
@@ -64,53 +51,53 @@ const QualityMeter: React.FC<QualityMeterProps> = ({ servicesUsed, totalServices
 interface QualityIndicatorProps {
   title: string;
   percentage: number;
-  color: "blue" | "green" | "yellow" | "amber" | "red";
+  color: "primary" | "accent" | "amber";
   description: string;
 }
 
 const QualityIndicator: React.FC<QualityIndicatorProps> = ({ title, percentage, color, description }) => {
-  const getColorClasses = (color: string) => {
-    switch (color) {
-      case "blue": return "from-blue-200 to-blue-500 text-blue-700";
-      case "green": return "from-green-200 to-green-500 text-green-700";
-      case "yellow": return "from-yellow-200 to-yellow-500 text-yellow-700";
-      case "amber": return "from-amber-200 to-amber-500 text-amber-700";
-      case "red": return "from-red-200 to-red-500 text-red-700";
-      default: return "from-gray-200 to-gray-500 text-gray-700";
-    }
+  const colorMap = {
+    primary: "text-primary bg-primary",
+    accent: "text-accent bg-accent",
+    amber: "text-[hsl(var(--terminal-amber))] bg-[hsl(var(--terminal-amber))]",
   };
-  
-  const colorClasses = getColorClasses(color);
+  const textColor = colorMap[color].split(" ")[0];
+  const bgColor = colorMap[color].split(" ")[1];
   
   return (
-    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-      <div className="flex justify-between items-center mb-2">
-        <h4 className="font-medium">{title}</h4>
-        <span className="font-bold">{percentage}%</span>
+    <div className="terminal-window">
+      <div className="terminal-titlebar">
+        <div className="terminal-dot-red" />
+        <div className="terminal-dot-yellow" />
+        <div className="terminal-dot-green" />
+        <span className="ml-2 text-[10px] font-mono text-muted-foreground">{title}.metric</span>
       </div>
-      
-      <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-2">
-        <div 
-          className={`h-full rounded-full bg-gradient-to-r ${colorClasses} transition-all duration-1000 ease-out`}
-          style={{ width: `${percentage}%` }}
-        ></div>
+      <div className="p-4">
+        <div className="flex justify-between items-center mb-2 font-mono">
+          <span className={`text-sm ${textColor}`}>{title}</span>
+          <span className={`font-bold text-lg ${textColor}`}>{percentage}%</span>
+        </div>
+        
+        <div className="w-full h-1.5 bg-border rounded-full overflow-hidden mb-2">
+          <div 
+            className={`h-full rounded-full ${bgColor} transition-all duration-1000 ease-out`}
+            style={{ width: `${percentage}%` }}
+          ></div>
+        </div>
+        
+        <p className="text-[10px] font-mono text-muted-foreground">// {description}</p>
       </div>
-      
-      <p className="text-xs text-foreground/70">{description}</p>
     </div>
   );
 };
 
-// Helper function to calculate quality score based on percentage of services used
 function calculateQualityScore(percentage: number, indicator: { low: number; medium: number; high: number }) {
   if (percentage < 33) {
     return indicator.low;
   } else if (percentage < 66) {
-    // Linear interpolation between low and medium
     const ratio = (percentage - 33) / 33;
     return Math.round(indicator.low + ratio * (indicator.medium - indicator.low));
   } else if (percentage < 100) {
-    // Linear interpolation between medium and high
     const ratio = (percentage - 66) / 34;
     return Math.round(indicator.medium + ratio * (indicator.high - indicator.medium));
   } else {

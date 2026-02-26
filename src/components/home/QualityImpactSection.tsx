@@ -9,14 +9,14 @@ interface QualityImpactSectionProps {
 
 const QualityImpactSection: React.FC<QualityImpactSectionProps> = ({ servicesUsed }) => {
   return (
-    <section className="py-12 sm:py-16 bg-gradient-to-b from-background to-yellow-50/30">
+    <section className="py-12 sm:py-16 border-t border-border">
       <div className="max-w-5xl mx-auto px-8 sm:px-12 lg:px-20">
         <div className="text-center mb-10 reveal">
-          <h2 className="text-2xl sm:text-3xl font-medium mb-3">
-            Measurable Quality Outcomes
+          <h2 className="text-2xl sm:text-3xl font-mono font-medium mb-3 text-foreground">
+            <span className="text-primary/40">## </span>Measurable Quality Outcomes
           </h2>
-          <p className="text-foreground/60 max-w-xl mx-auto text-sm">
-            Optimized QA processes deliver compounding efficiency gains across your entire software delivery lifecycle.
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm font-mono">
+            // Optimized QA processes deliver compounding efficiency gains
           </p>
         </div>
         
@@ -24,38 +24,31 @@ const QualityImpactSection: React.FC<QualityImpactSectionProps> = ({ servicesUse
           <QualityMeter servicesUsed={servicesUsed} totalServices={10} />
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
-          <div className="text-center p-4 rounded-lg bg-background border border-border shadow-sm">
-            <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-yellow-100 mb-3">
-              <Shield className="w-5 h-5 text-primary" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+          {[
+            { icon: Shield, label: "reliability", value: "99.9%", desc: "uptime with proactive defect prevention", color: "text-primary" },
+            { icon: TrendingUp, label: "regressions", value: "-85%", desc: "reduction in production defects", color: "text-accent" },
+            { icon: Zap, label: "ux_quality", value: "A+", desc: "pixel-perfect visual experiences", color: "text-[hsl(var(--terminal-amber))]" },
+            { icon: Clock, label: "velocity", value: "+60%", desc: "acceleration in deployment cycles", color: "text-[hsl(var(--terminal-purple))]" },
+          ].map(({ icon: Icon, label, value, desc, color }) => (
+            <div key={label} className="terminal-window">
+              <div className="terminal-titlebar">
+                <div className="terminal-dot-red" />
+                <div className="terminal-dot-yellow" />
+                <div className="terminal-dot-green" />
+              </div>
+              <div className="p-4 font-mono text-xs space-y-1">
+                <div><span className="text-muted-foreground">{"{"}</span></div>
+                <div className="pl-3">
+                  <span className="text-accent">"{label}"</span>
+                  <span className="text-muted-foreground">: </span>
+                  <span className={`font-semibold text-lg ${color}`}>{value}</span>
+                </div>
+                <div className="pl-3 text-muted-foreground text-[10px]">// {desc}</div>
+                <div><span className="text-muted-foreground">{"}"}</span></div>
+              </div>
             </div>
-            <h3 className="font-medium text-sm mb-1">Higher Reliability</h3>
-            <p className="text-xs text-foreground/60">99.9% uptime with proactive defect prevention</p>
-          </div>
-          
-          <div className="text-center p-4 rounded-lg bg-background border border-border shadow-sm">
-            <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-yellow-100 mb-3">
-              <TrendingUp className="w-5 h-5 text-primary" />
-            </div>
-            <h3 className="font-medium text-sm mb-1">Fewer Regressions</h3>
-            <p className="text-xs text-foreground/60">85% reduction in production defects</p>
-          </div>
-          
-          <div className="text-center p-4 rounded-lg bg-background border border-border shadow-sm">
-            <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-yellow-100 mb-3">
-              <Zap className="w-5 h-5 text-primary" />
-            </div>
-            <h3 className="font-medium text-sm mb-1">Better UX</h3>
-            <p className="text-xs text-foreground/60">Visual QA ensures pixel-perfect experiences</p>
-          </div>
-          
-          <div className="text-center p-4 rounded-lg bg-background border border-border shadow-sm">
-            <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-yellow-100 mb-3">
-              <Clock className="w-5 h-5 text-primary" />
-            </div>
-            <h3 className="font-medium text-sm mb-1">Faster Releases</h3>
-            <p className="text-xs text-foreground/60">60% acceleration in deployment cycles</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>

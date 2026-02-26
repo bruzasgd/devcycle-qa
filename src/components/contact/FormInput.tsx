@@ -26,8 +26,8 @@ const FormInput = ({
 }: FormInputProps) => {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-foreground/80 mb-1">
-        {label}
+      <label htmlFor={id} className="block text-sm font-mono font-medium text-muted-foreground mb-1">
+        <span className="text-primary/60">$ </span>{label}
       </label>
       <div className="relative">
         <input
@@ -38,10 +38,10 @@ const FormInput = ({
           onChange={onChange}
           required={required}
           min={min}
-          className="w-full px-4 py-2 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-yellow-500/50 transition-all [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-inner-spin-button]:hidden [&::-webkit-outer-spin-button]:hidden"
+          className="w-full px-4 py-2 rounded border border-border bg-secondary font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-inner-spin-button]:hidden [&::-webkit-outer-spin-button]:hidden"
         />
         {icon && (
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-yellow-500/70 pointer-events-none">
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-primary/70 pointer-events-none">
             {icon}
           </div>
         )}

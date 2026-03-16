@@ -7,46 +7,33 @@ import { useEffect } from "react";
  */
 const SmoothScroll = () => {
   useEffect(() => {
-    // Smooth scroll to anchor links with subtle experience
-    const handleAnchorClick: EventListener = (e) => {
-      const event = e as MouseEvent;
-      const anchor = event.currentTarget as HTMLAnchorElement | null;
+    // Use event delegation so dynamically rendered anchors also work
+    const handleAnchorClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement).closest('a[href^="#"]') as HTMLAnchorElement | null;
       if (!anchor) return;
 
       const targetId = anchor.getAttribute("href");
       if (!targetId || targetId === "#") return;
 
       const targetElement = document.querySelector(targetId);
-      if (!targetElement) return; // allow default behavior if target is missing
+      if (!targetElement) return;
 
-      // We handle the scroll manually.
-      event.preventDefault();
-
-      // Update the URL hash for expected behavior (copy/paste/share).
+      e.preventDefault();
       history.replaceState(null, "", targetId);
 
-      // Add a very subtle highlight effect to the target element
       targetElement.classList.add("gentle-pulse");
-
-      // Robust scrolling (works even if the scroll container changes)
       targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
 
-      // Offset for fixed header
       window.setTimeout(() => {
         window.scrollBy({ top: -100, behavior: "smooth" });
       }, 0);
 
-      // Remove pulse effect after animation completes
       setTimeout(() => {
         targetElement.classList.remove("gentle-pulse");
       }, 1500);
     };
 
-    // Add event listeners to all anchor links
-    const anchors = document.querySelectorAll('a[href^="#"]');
-    anchors.forEach(anchor => {
-      anchor.addEventListener('click', handleAnchorClick);
-    });
+    document.addEventListener('click', handleAnchorClick);
 
     // Intersection Observer for reveal animations
     const observerOptions = {

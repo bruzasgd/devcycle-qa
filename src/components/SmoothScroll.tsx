@@ -157,10 +157,7 @@ const SmoothScroll = () => {
 
     // Clean up function
     return () => {
-      // Remove event listeners from anchor links
-      anchors.forEach(anchor => {
-        anchor.removeEventListener('click', handleAnchorClick);
-      });
+      document.removeEventListener('click', handleAnchorClick);
       
       // Disconnect intersection observer
       observer.disconnect();

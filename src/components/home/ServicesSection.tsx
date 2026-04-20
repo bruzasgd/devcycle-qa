@@ -108,9 +108,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange })
   }, [onVisibilityChange]);
 
   return (
-    <section id="services" ref={sectionRef} className="py-24 sm:py-32" aria-labelledby="services-heading">
+    <section id="services" ref={sectionRef} className="py-14 sm:py-16" aria-labelledby="services-heading">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
-        <div className="text-center mb-14">
+        <div className="text-center mb-10">
           <div className="chip mb-5">QA Optimization Stack</div>
           <h2 id="services-heading" className="text-4xl sm:text-5xl font-semibold text-foreground tracking-tight">
             Built for engineers who <span className="gradient-text">ship</span>.

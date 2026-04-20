@@ -14,9 +14,9 @@ const stats = [
 
 const QualityImpactSection: React.FC<QualityImpactSectionProps> = () => {
   return (
-    <section className="py-24 sm:py-28 border-t border-border/60">
+    <section className="py-14 sm:py-16 border-t border-border/60">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
-        <div className="text-center mb-14">
+        <div className="text-center mb-10">
           <div className="chip mb-5">Outcomes</div>
           <h2 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight">
             Measurable quality, <span className="gradient-text">compounded</span>.

@@ -12,9 +12,9 @@ const clients = [
 
 const ClientExperienceSection = () => {
   return (
-    <section className="py-20 border-t border-border/60" aria-labelledby="clients-heading">
+    <section className="py-12 border-t border-border/60" aria-labelledby="clients-heading">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
-        <h2 id="clients-heading" className="text-center text-xs font-mono text-muted-foreground uppercase tracking-[0.2em] mb-10">
+        <h2 id="clients-heading" className="text-center text-xs font-mono text-muted-foreground uppercase tracking-[0.2em] mb-8">
           Trusted by industry leaders
         </h2>
 

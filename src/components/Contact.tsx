@@ -3,9 +3,9 @@ import ContactInfo from "./contact/ContactInfo";
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-24 sm:py-32 border-t border-border/60">
+    <section id="contact" className="py-14 sm:py-16 border-t border-border/60">
       <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10">
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-8">
           <div className="chip mb-5">Get in touch</div>
           <h2 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight">
             Let's <span className="gradient-text">accelerate</span> your releases.

@@ -1,4 +1,3 @@
-
 import React from "react";
 
 interface MessageTextareaProps {
@@ -9,17 +8,17 @@ interface MessageTextareaProps {
 const MessageTextarea = ({ value, onChange }: MessageTextareaProps) => {
   return (
     <div>
-      <label htmlFor="message" className="block text-sm font-mono font-medium text-muted-foreground mb-1">
-        <span className="text-primary/60">$ </span>Meeting Agenda
+      <label htmlFor="message" className="block text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2">
+        Message
       </label>
       <textarea
         id="message"
         name="message"
         value={value}
         onChange={onChange}
-        placeholder="// What would you like to discuss?"
-        rows={3}
-        className="w-full px-4 py-2 rounded border border-border bg-secondary font-mono text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
+        placeholder="Tell us about your project and preferred meeting time..."
+        rows={6}
+        className="w-full px-4 py-3 rounded-lg border border-border bg-background/60 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/40 transition-all resize-none"
       />
     </div>
   );

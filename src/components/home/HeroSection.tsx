@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
   return (
-    <section className="relative pt-36 pb-28 overflow-hidden">
+    <section className="relative pt-32 pb-16 overflow-hidden">
       <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 text-center">
         {/* Status pill */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card/60 backdrop-blur border border-border text-xs font-mono text-muted-foreground mb-8 animate-fade-in">

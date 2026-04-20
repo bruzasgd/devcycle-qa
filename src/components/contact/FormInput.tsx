@@ -1,4 +1,3 @@
-
 import React from "react";
 
 interface FormInputProps {
@@ -13,39 +12,21 @@ interface FormInputProps {
   min?: string;
 }
 
-const FormInput = ({ 
-  id, 
-  name, 
-  type, 
-  value, 
-  onChange, 
-  label, 
-  required = false,
-  icon,
-  min
-}: FormInputProps) => {
+const FormInput = ({ id, name, type, value, onChange, label, required = false }: FormInputProps) => {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-mono font-medium text-muted-foreground mb-1">
-        <span className="text-primary/60">$ </span>{label}
+      <label htmlFor={id} className="block text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2">
+        {label}
       </label>
-      <div className="relative">
-        <input
-          type={type}
-          id={id}
-          name={name}
-          value={value}
-          onChange={onChange}
-          required={required}
-          min={min}
-          className="w-full px-4 py-2 rounded border border-border bg-secondary font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-inner-spin-button]:hidden [&::-webkit-outer-spin-button]:hidden"
-        />
-        {icon && (
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-primary/70 pointer-events-none">
-            {icon}
-          </div>
-        )}
-      </div>
+      <input
+        type={type}
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="w-full px-4 py-3 rounded-lg border border-border bg-background/60 text-foreground focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/40 transition-all"
+      />
     </div>
   );
 };

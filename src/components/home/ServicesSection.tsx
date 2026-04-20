@@ -1,55 +1,131 @@
-
-import React from 'react';
-import ServiceSection from '../ServiceSection';
-import E2ETestingAnimation from '../animations/E2ETestingAnimation';
-import ScreenshotTestingAnimation from '../animations/ScreenshotTestingAnimation';
-import BackendTestingAnimation from '../animations/BackendTestingAnimation';
-import CICDAnimation from '../animations/CICDAnimation';
-import BestPracticesAnimation from '../animations/BestPracticesAnimation';
-import AITestGenerationAnimation from '../animations/AITestGenerationAnimation';
-import SmartAnalyticsAnimation from '../animations/SmartAnalyticsAnimation';
-import MigrationAutomationAnimation from '../animations/MigrationAutomationAnimation';
-import AIAgentMCPAnimation from '../animations/AIAgentMCPAnimation';
-import ManagedQAAnimation from '../animations/ManagedQAAnimation';
+import React, { useEffect, useRef } from 'react';
+import { Bot, Sparkles, GitBranch, MonitorPlay, Eye, BarChart3, Gauge, RefreshCw, ShieldCheck, Headphones } from 'lucide-react';
+import ServiceCard from '../ServiceCard';
 
 interface ServicesSectionProps {
   onVisibilityChange: (isVisible: boolean, serviceId: string) => void;
 }
 
+const services = [
+  {
+    id: 'ai-agents',
+    icon: Bot,
+    label: 'AI Agents',
+    title: 'Intelligent Test Orchestration',
+    description: 'Autonomous QA agents leverage code context and change analysis to dynamically select and execute relevant tests at scale.',
+    highlights: ['Smart test prioritization', 'Parallel execution', 'Continuous DevOps feedback'],
+  },
+  {
+    id: 'ai-testing',
+    icon: Sparkles,
+    label: 'Generative AI',
+    title: 'Smart Test Generation',
+    description: 'Generative AI transforms specifications and telemetry into comprehensive test suites with edge cases and risk-based prioritization.',
+    highlights: ['Self-healing frameworks', 'Edge-case discovery', '70% less maintenance'],
+  },
+  {
+    id: 'cicd-integration',
+    icon: GitBranch,
+    label: 'Quality Gates',
+    title: 'CI/CD Pipeline Integration',
+    description: 'Quality gates enforce automated checks at every commit with real-time feedback loops to prevent regression leakage.',
+    highlights: ['Progressive testing', 'Commit-level enforcement', 'Zero-friction rollouts'],
+  },
+  {
+    id: 'e2e-testing',
+    icon: MonitorPlay,
+    label: 'Cross-Platform',
+    title: 'E2E Testing Framework',
+    description: 'Behavior-driven executable specifications validate complete user journeys across Cypress, Playwright, and real-device clouds.',
+    highlights: ['BDD/ATDD scenarios', 'Real-device coverage', 'Web, mobile & hybrid'],
+  },
+  {
+    id: 'visual-qa',
+    icon: Eye,
+    label: 'Visual AI',
+    title: 'Visual Regression Detection',
+    description: 'AI-assisted visual comparison combines pixel-perfect and semantic change detection to catch UI drift before users do.',
+    highlights: ['Cross-browser validation', 'Intelligent diffing', 'Noise filtering'],
+  },
+  {
+    id: 'quality-analytics',
+    icon: BarChart3,
+    label: 'Predictive Analytics',
+    title: 'Quality Analytics & Insights',
+    description: 'Dashboards deliver actionable intelligence: flake detection, slow tests, coverage trends, and root cause forecasting.',
+    highlights: ['Reliability scores', 'Predictive forecasting', 'Coverage trendlines'],
+  },
+  {
+    id: 'performance-qa',
+    icon: Gauge,
+    label: 'Resilience',
+    title: 'Performance Engineering',
+    description: 'Load, stress, and chaos testing with predictive bottleneck analysis ensures scalable performance under real-world conditions.',
+    highlights: ['Chaos engineering', 'API & microservice QA', 'Bottleneck prediction'],
+  },
+  {
+    id: 'automation-migration',
+    icon: RefreshCw,
+    label: 'Low-Code',
+    title: 'Automation Migration',
+    description: 'Convert legacy manual test suites into modern automation pipelines using low-code tools and hybrid scripting approaches.',
+    highlights: ['No-code platforms', 'Hybrid scripting', 'Broader team participation'],
+  },
+  {
+    id: 'qa-strategy',
+    icon: ShieldCheck,
+    label: 'Security',
+    title: 'Security & Compliance',
+    description: 'Integrate security testing into CI/CD with automated vulnerability scanning, OWASP checks, and API security validation.',
+    highlights: ['Shift-left security', 'OWASP compliance', 'Audit-ready trails'],
+  },
+  {
+    id: 'managed-qa',
+    icon: Headphones,
+    label: 'Managed Services',
+    title: 'Managed QA & On-Demand',
+    description: 'End-to-end managed QA — from strategy to execution — delivering flexible outcomes without heavy internal hiring overhead.',
+    highlights: ['Fully outsourced QAOps', 'Dedicated teams', 'Scales with releases'],
+  },
+];
+
 const ServicesSection: React.FC<ServicesSectionProps> = ({ onVisibilityChange }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Treat the whole section as "active" for the pipeline indicator
+        if (entry.isIntersecting) {
+          services.forEach((s) => onVisibilityChange(true, s.id));
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [onVisibilityChange]);
+
   return (
-    <section id="services" className="py-8 sm:py-12" aria-labelledby="services-heading">
-      <div className="max-w-5xl mx-auto px-8 sm:px-12 lg:px-20 text-center mb-8">
-        <div className="inline-flex items-center justify-center mb-3 reveal">
-          <span className="chip font-mono text-xs">&lt;QualityEngineering /&gt;</span>
+    <section id="services" ref={sectionRef} className="py-24 sm:py-32" aria-labelledby="services-heading">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
+        <div className="text-center mb-14">
+          <div className="chip mb-5">QA Optimization Stack</div>
+          <h2 id="services-heading" className="text-4xl sm:text-5xl font-semibold text-foreground tracking-tight">
+            Built for engineers who <span className="gradient-text">ship</span>.
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+            Strategic QA consulting and engineering foundations that scale agile and DevOps pipelines.
+          </p>
         </div>
-        <h2 id="services-heading" className="text-2xl sm:text-3xl font-mono font-medium mb-3 reveal text-foreground">
-          <span className="text-primary/40"># </span>QA Optimization Stack
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-sm reveal font-mono">
-          // Strategic QA consulting and engineering foundations that scale agile and DevOps pipelines
-        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map((s) => (
+            <ServiceCard key={s.id} {...s} />
+          ))}
+        </div>
       </div>
-      
-      <ServiceSection id="ai-agents" title="AI Agents – Intelligent Test Orchestration" description="Autonomous QA agents leverage code context and change analysis to dynamically select and execute relevant tests at scale. These intelligent orchestrators optimize test runtimes through parallel execution and smart prioritization, feeding actionable insights back to DevOps teams for continuous pipeline refinement." label="AI Agents" animationElement={<AIAgentMCPAnimation />} onVisibilityChange={onVisibilityChange} className="py-4" />
-      
-      <ServiceSection id="ai-testing" title="AI Testing – Smart Test Generation" description="Generative AI transforms specifications, user stories, and production telemetry into comprehensive test suites—including edge cases and risk-based prioritization. Self-healing frameworks automatically adapt to UI and API changes, eliminating brittle tests and reducing maintenance overhead by up to 70%." label="Generative AI" isReversed={true} animationElement={<AITestGenerationAnimation />} onVisibilityChange={onVisibilityChange} className="py-4" />
-      
-      <ServiceSection id="cicd-integration" title="CI/CD Pipeline Integration" description="Quality gates integrate seamlessly into CI/CD workflows, enforcing automated checks at every commit. Real-time feedback loops prevent regression leakage into production, while progressive testing across development, staging, and production environments ensures confidence at each deployment stage." label="Quality Gates" animationElement={<CICDAnimation />} onVisibilityChange={onVisibilityChange} className="py-4" />
-      
-      <ServiceSection id="e2e-testing" title="E2E Testing Framework (Cypress, Playwright)" description="Behavior-driven (BDD/ATDD) executable specifications validate complete user journeys with Given-When-Then scenarios. Real-device and cloud testing infrastructure ensures coverage across web, mobile, and hybrid applications on actual devices and browser configurations." label="Cross-Platform" isReversed={true} animationElement={<E2ETestingAnimation />} onVisibilityChange={onVisibilityChange} className="py-4" />
-      
-      <ServiceSection id="visual-qa" title="Visual QA – Visual Regression Detection" description="AI-assisted visual comparison combines pixel-perfect and semantic change detection to catch UI drift before users do. Cross-browser validation across real devices ensures UX consistency, while intelligent diffing filters noise and highlights meaningful visual regressions." label="Visual AI" animationElement={<ScreenshotTestingAnimation />} onVisibilityChange={onVisibilityChange} className="py-4" />
-      
-      <ServiceSection id="quality-analytics" title="Quality Analytics & Risk Insights" description="Dashboards deliver actionable intelligence: flake detection, slow test identification, coverage trends, and root cause forecasting. Predictive analytics and reliability scores drive smarter decisions, enabling teams to focus effort where it impacts quality most." label="Predictive Analytics" isReversed={true} animationElement={<SmartAnalyticsAnimation />} onVisibilityChange={onVisibilityChange} className="py-4" />
-      
-      <ServiceSection id="performance-qa" title="Performance & Resilience Engineering" description="Load, stress, and chaos testing with predictive bottleneck analysis ensures scalable, reliable performance under real-world conditions. API and microservices QA validates distributed system resilience, identifying failure points before they impact production users." label="Resilience" animationElement={<BackendTestingAnimation />} onVisibilityChange={onVisibilityChange} className="py-4" />
-      
-      <ServiceSection id="automation-migration" title="Automation Migration & Low-Code Platforms" description="Convert legacy manual test suites into modern automation pipelines using low-code/no-code tools and hybrid scripting approaches. Boost throughput with reduced maintenance overhead, enabling broader team participation in quality engineering without deep coding expertise." label="Low-Code" isReversed={true} animationElement={<MigrationAutomationAnimation />} onVisibilityChange={onVisibilityChange} className="py-4" />
-      
-      <ServiceSection id="qa-strategy" title="Security & Compliance Automation" description="Integrate security testing into CI/CD pipelines with automated vulnerability scanning, OWASP compliance checks, and API security validation. Shift security left to catch issues early while maintaining audit trails and compliance documentation." label="Security" isReversed={true} animationElement={<BestPracticesAnimation />} onVisibilityChange={onVisibilityChange} className="py-4" />
-      
-      <ServiceSection id="managed-qa" title="Managed QA Services & On-Demand Support" description="End-to-end managed QA offerings—from strategy to execution—delivering flexible outcomes without heavy internal hiring or tooling overhead. Fully outsourced QAOps/TestOps with dedicated teams that scale with your release cadence and business needs." label="Managed Services" animationElement={<ManagedQAAnimation />} onVisibilityChange={onVisibilityChange} className="py-4" />
     </section>
   );
 };

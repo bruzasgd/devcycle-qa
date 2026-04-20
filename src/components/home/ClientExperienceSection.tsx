@@ -12,25 +12,22 @@ const clients = [
 
 const ClientExperienceSection = () => {
   return (
-    <section className="py-12 border-t border-border" aria-labelledby="clients-heading">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <h2 id="clients-heading" className="text-2xl font-mono font-medium text-foreground mb-2">
-            <span className="text-primary/40">// </span>Trusted by Industry Leaders
-          </h2>
-        </div>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center">
-          {clients.map((client, index) => (
-            <div 
+    <section className="py-20 border-t border-border/60" aria-labelledby="clients-heading">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
+        <h2 id="clients-heading" className="text-center text-xs font-mono text-muted-foreground uppercase tracking-[0.2em] mb-10">
+          Trusted by industry leaders
+        </h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+          {clients.map((client) => (
+            <div
               key={client.name}
-              className="flex items-center justify-center p-8 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105 opacity-60 hover:opacity-100"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="flex items-center justify-center p-4 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
             >
               <img
                 src={client.logo}
                 alt={`${client.name} logo`}
-                className="h-20 md:h-24 w-auto object-contain invert brightness-200"
+                className="h-12 md:h-14 w-auto object-contain invert brightness-200"
                 loading="lazy"
               />
             </div>

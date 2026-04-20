@@ -1,49 +1,27 @@
-
 import ContactForm from "./contact/ContactForm";
 import ContactInfo from "./contact/ContactInfo";
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-16 sm:py-20 border-t border-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-10 reveal">
-          <div className="chip inline-block mb-4 font-mono">$ init --qa-assessment</div>
-          <h2 className="text-3xl sm:text-4xl font-mono font-medium mb-4 text-foreground">
-            <span className="text-primary/40">## </span>Accelerate Quality Engineering
+    <section id="contact" className="py-24 sm:py-32 border-t border-border/60">
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="chip mb-5">Get in touch</div>
+          <h2 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight">
+            Let's <span className="gradient-text">accelerate</span> your releases.
           </h2>
-          <p className="text-muted-foreground text-base font-mono">
-            // Discuss how AI-driven test automation and CI/CD quality gates can accelerate your releases
+          <p className="mt-4 text-muted-foreground">
+            Discuss how AI-driven test automation and CI/CD quality gates can transform your delivery pipeline.
           </p>
         </div>
-        
-        {/* Trust signals */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm font-mono">
-          <span className="px-3 py-1 rounded bg-primary/10 text-primary border border-primary/20">
-            ✓ ISO/DevOps Compliant
-          </span>
-          <span className="px-3 py-1 rounded bg-primary/10 text-primary border border-primary/20">
-            ✓ Enterprise-Grade Security
-          </span>
-          <span className="px-3 py-1 rounded bg-primary/10 text-primary border border-primary/20">
-            ✓ Proven Results
-          </span>
-        </div>
-        
-        <div className="max-w-3xl mx-auto">
-          <div className="terminal-window reveal">
-            <div className="terminal-titlebar">
-              <div className="terminal-dot-red" />
-              <div className="terminal-dot-yellow" />
-              <div className="terminal-dot-green" />
-              <span className="ml-2 text-[10px] font-mono text-muted-foreground">contact-form.sh</span>
+
+        <div className="rounded-2xl bg-card/60 backdrop-blur border border-border overflow-hidden shadow-[0_8px_40px_hsl(0_0%_0%/0.3)]">
+          <div className="grid md:grid-cols-5 gap-0">
+            <div className="md:col-span-3 p-8 sm:p-10">
+              <ContactForm />
             </div>
-            <div className="grid md:grid-cols-5 gap-0">
-              <div className="md:col-span-3 p-6 sm:p-8">
-                <ContactForm />
-              </div>
-              <div className="md:col-span-2">
-                <ContactInfo />
-              </div>
+            <div className="md:col-span-2 border-t md:border-t-0 md:border-l border-border bg-background/40">
+              <ContactInfo />
             </div>
           </div>
         </div>
